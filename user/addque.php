@@ -40,118 +40,7 @@ session_start();
 <div class="body_wrap">
 <div class="page_wrap">
 <div class="top_panel_fixed_wrap"></div>
-<header class="top_panel_wrap bg_tint_dark">
- 
-<div class="menu_user_wrap">
-<div class="content_wrap clearfix">
-<div class="menu_user_area menu_user_right menu_user_nav_area">
-<ul id="menu_user" class="menu_user_nav">
-
-<li class="menu_user_controls">
-<a href="#">
-<span class="user_avatar">
-<img alt="" src="../../<?php echo $pic;?>" srcset="http://1.gravatar.com/avatar/45e4d63993e55fa97a27d49164bce80f?s=32&amp;d=mm&amp;r=g 2x" class="avatar avatar-16 photo" height="16" width="16"/>
-</span>
-<?php 
-		$email=$_SESSION["email"];
-		
-require '../conclass.php';
-$obj=new conclass();
-$res=$obj->getdata("select * from user_tbl where pk_email_id='$email'");
-		
-		while($row=MYSQL_fetch_array($res,MYSQL_ASSOC))
-{
-	$uname=$row["u_name"];
-	$pic=$row["u_pic"];
-}
-
-?>
-
-<span class="user_name"><?php echo $uname;?></span></a>
-<ul>
-<li><a href="#" class="icon icon-doc-inv">view profile</a></li>
-<li><a href="#" class="icon icon-cog-1">edit profile</a></li>
-<li><a href="#" class="icon icon-cog-1">change profile</a></li>
-</ul>
-</li>
-<li class="menu_user_logout">
-<a href="../login.php" class="icon icon-logout">Logout</a>
-</li>
-</ul>
-</div>
-
-</div>
-</div>
- 
- 
-<div class="menu_main_wrap logo_left">
-<div class="content_wrap clearfix">
- 
-<div class="logo">
-<a href="index-2.php">
-<h2 class="logo_main" alt="">knowledge.com</h2>
-<img src="images/logo_dark.png" class="logo_fixed" alt="">
-</a>
-
-</div>
- 
- 
-
- 
- 
-<a href="#" class="menu_main_responsive_button icon-menu-1"></a>
-<nav class="menu_main_nav_area">
-<ul id="menu_main" class="menu_main_nav">
-<li class="menu-item menu-item-has-children"><a href="index-2.php">Homepage</a>
-</li>
-<li class="menu-item menu-item-has-children"><a href="#">Tutorial</a>
-<ul class="sub-menu">
-<li class="menu-item menu-item-has-children"><a href="typography.html">Typography</a>
-<ul class="sub-menu">
-<?php //include 'conclass.php';
-$obj=new conclass();
-
-		$res=$obj->getdata("select * from category_tbl");
-		$obj1=new conclass();
-
-		while($row=MYSQL_fetch_array($res,MYSQL_ASSOC))
-		{
-			echo '<li class="menu-item"><a href="cat.php?id='.$row["pk_cat_id"].'">'.$row["cat_name"];
-			echo '</a>
-				<li>';
-
-		}
-?>
-
-</ul>
-</li>
-<li class="menu-item"><a href="video-tutorials.html">Video Tutorials</a></li>
-</ul>
-</li>
-<li class="menu-item current-menu-ancestor current-menu-parent menu-item-has-children"><a href="courses-streampage.html">Question-Answer</a>
-<ul class="sub-menu">
-<li class="menu-item"><a href="addque.php">Asks Question</a></li>
-<li class="menu-item"><a href="que-ans.php">View Questions-Answers</a></li>
-<li class="menu-item"><a href="myque.php">View MyQuestions</a></li>
-<li class="menu-item"><a href="myans.php">View MyAnswers</a></li>
-</ul>
-
-</li>
-<li class="menu-item menu-item-has-children"><a href="team-members.html">Discussion forum</a>
-
-</li>
-<li class="menu-item menu-item-has-children"><a href="blog-streampage.html">Test</a>
-
-</li>
-
-</ul>
-</nav>
- 
-</div>
-</div>
- 
-</header>
- 
+<?php include 'userheader.php'; ?> 
  
  <form method="post" action="insertque.php" enctype="multipart/form-data">
 <div class="page_content_wrap">
@@ -228,8 +117,9 @@ $obj=new conclass();
 </div>
 <br>
 
-  <div class="btn-group" style=" padding-left:350px;" ><h4>
-  <button type="submit"   class="btn btn-success " style=" background:green; " value="Add" name="addque">Publish Your Question</button></h4>
+  <div class="btn-group" style=" padding-left:350px;" >
+  <button type="submit" name="addque" class="sc_button sc_button_square sc_button_style_filled sc_button_bg_link sc_button_size_large alignleft sc_buttons_st1 sc_buttons_st5">Publish Your Question</a>
+
 
   
   </div>
@@ -246,58 +136,7 @@ $obj=new conclass();
 </div>
 </div> 
  </form>
-<footer class="contacts_wrap bg_tint_dark contacts_style_dark">
-<div class="content_wrap">
-<div class="logo">
-<a href="index-2.html">
-<img src="images/logo_footer.png" alt="">
-</a>
-</div>
-<div class="contacts_address">
-<address class="address_right">
-Phone: 1.800.123.4567<br>
-Fax: 1.800.123.4566
-</address>
-<address class="address_left">
-San Francisco, CA 94102, US<br>
-1234 Some St
-</address>
-</div>
-<div class="sc_socials sc_socials_size_big">
-<div class="sc_socials_item">
-<a target="_blank" class="social_icons social_facebook">
-<span class="sc_socials_hover social_facebook"></span>
-</a>
-</div>
-<div class="sc_socials_item">
-<a target="_blank" class="social_icons social_pinterest">
-<span class="sc_socials_hover social_pinterest"></span>
-</a>
-</div>
-<div class="sc_socials_item">
-<a target="_blank" class="social_icons social_twitter">
-<span class="sc_socials_hover social_twitter"></span>
-</a>
-</div>
-<div class="sc_socials_item">
-<a target="_blank" class="social_icons social_gplus">
-<span class="sc_socials_hover social_gplus"></span>
-</a>
-</div>
-<div class="sc_socials_item">
-<a target="_blank" class="social_icons social_rss">
-<span class="sc_socials_hover social_rss"></span>
-</a>
-</div>
-<div class="sc_socials_item">
-<a target="_blank" class="social_icons social_dribbble">
-<span class="sc_socials_hover social_dribbble"></span>
-</a>
-</div>
-</div>
-</div>
-</footer>
- 
+ <?php include 'userfooter.php'; ?> 
  
  
 </div>

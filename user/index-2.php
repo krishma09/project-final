@@ -139,7 +139,7 @@ $obj=new conclass();
 <li class="menu-item"><a href="video-tutorials.html">Video Tutorials</a></li>
 </ul>
 </li>
-<li class="menu-item menu-item-has-children"><a href="courses-streampage.html">Question-Answer</a>
+<li class="menu-item menu-item-has-children"><a href="">Question-Answer</a>
 <ul class="sub-menu">
 <li class="menu-item"><a href="addque.php">Ask Question</a></li>
 <li class="menu-item"><a href="que-ans.php">View Questions-Answers</a></li>
@@ -151,7 +151,24 @@ $obj=new conclass();
 <li class="menu-item menu-item-has-children"><a href="team-members.html">Discussion forum</a>
 
 </li>
-<li class="menu-item menu-item-has-children"><a href="blog-streampage.html">Test</a>
+<li class="menu-item menu-item-has-children"><a href="">Test</a>
+<ul class="sub-menu">
+<?php //include 'conclass.php';
+$obj=new conclass();
+
+		$res=$obj->getdata("select * from category_tbl");
+		$obj1=new conclass();
+
+		while($row=MYSQL_fetch_array($res,MYSQL_ASSOC))
+		{
+			echo '<li class="menu-item"><a href="test.php?id='.$row["pk_cat_id"].'">'.$row["cat_name"];
+			echo '</a>
+				<li>';
+
+		}
+?>
+
+</ul>
 
 </li>
 

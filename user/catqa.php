@@ -54,23 +54,25 @@ session_start();
 
 
 <?php
-//	include '../conclass.php';
-  //$obj=new conclass();
- //$res=mysql_query("select * from que_tbl where flag=1");
-	
-	$obj=new conclass();
-	$res1=$obj1->getdata('select count(a.pk_ans_id)"cnt",q.* from que_tbl as q,ans_tbl as a where a.fk_q_id=q.pk_q_id group by q.q_title');
 
+//	include '../conclass.php';
+//  $obj=new conclass();
+ //$res=$obj->getdata("select * from que_tbl where fk_cat_id=$cid and flag=1");
+$cid=$_REQUEST["id"];
+$obj1=new conclass();
+$res1=$obj1->getdata("select count(a.pk_ans_id)'cnt',q.* from que_tbl as q ,ans_tbl as a where a.fk_q_id=q.pk_q_id and q.fk_cat_id=$cid group by q.q_title");
+	
+	
 	
 while($row=MYSQL_fetch_array($res1,MYSQL_ASSOC))
 		{
-			$id=$row["pk_q_id"];
+//$obj=new conclass();
+	
+		$id=$row["pk_q_id"];
 			$title=$row["q_title"];
 			$desc=$row["q_desc"];
 			$date=$row["q_date"];
 			$ans=$row["cnt"];
-	//		$_SESSION["id"]=$id;
-	//	$_SESSION["id"]=$id;
 			$email1=$row["fk_email_id"];
 			$obj=new conclass();
 			$res2=mysql_query("select * from que_view_tbl where fk_que_id=$id");
@@ -95,7 +97,7 @@ while($row=MYSQL_fetch_array($res1,MYSQL_ASSOC))
 	
 			echo '</figure>';
 			echo '<h3>';
-			echo '<a>'.$title.'</a><br>';
+			echo '<a href="single_question.html">'.$title.'</a><br>';
 		//	echo '<a href="single_question.html" style="font-size:20px">'.$desc.'</a>';
 			echo '</h3><br>';
 			echo '<div class="question-author"></div>';
@@ -107,7 +109,7 @@ while($row=MYSQL_fetch_array($res1,MYSQL_ASSOC))
 			echo '<a class="post_info_date">'.$date.'</a>';
 			echo '</span>';
 			echo '<span class="post_info_item post_info_counters"><span class="glyphicon glyphicon-comment"></span>	';
-			echo '<a href="ans.php?id='.$id.'" class="post_info_author">'.$ans.' answer</a>';
+			echo '<a href="ans.php?id='.$row["pk_q_id"].'" class="post_info_author">'.$ans.' answer</a>';
 			echo '</span>';
 			echo '<span class="post_info_item post_info_counters "><span class="glyphicon glyphicon-user"></span>';
 			echo '<a  >'.$view.' views</a>';

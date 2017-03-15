@@ -4,7 +4,7 @@
 	$title=$_POST["title"];
 	$desc=$_POST["desc"];
 	$cat=$_POST["sub"];
-	$date=date("d-M-y");
+	$date=date("d-m-y");
 //	$cnt=1;
 //	$like=1;
 	$flag=0;
@@ -25,7 +25,7 @@ $res1=$obj->getdata("insert into que_tbl values('$id','$title','$desc','$str','$
 	
 if($res1==1)
 {
-	header('location:index-2.php');
+	header('location:que-ans.php');
 	//echo "successfull";
 }
 else
