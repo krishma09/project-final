@@ -13,7 +13,7 @@ session_start();
 <script src="../scripts/bootstrap.js"></script>
 
 <link rel="icon" type="image/x-icon" href="images/favicon.ico"/>
-<title>My Question | knowledge.com</title>
+<title>Discussion Forum | knowledge.com</title>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans%3A300italic%2C400italic%2C600italic%2C300%2C400%2C600&amp;subset=latin%2Clatin-ext&amp;ver=4.3.1" type="text/css" media="all"/>
 <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Roboto:100,100italic,300,300italic,400,400italic,700,700italic&amp;subset=latin,latin-ext,cyrillic,cyrillic-ext" type="text/css" media="all"/>
 <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Love+Ya+Like+A+Sister:400&amp;subset=latin" type="text/css" media="all"/>
@@ -44,45 +44,33 @@ session_start();
 <div class="body_wrap">
 <div class="page_wrap">
 <div class="top_panel_fixed_wrap"></div>
-<?php include 'userheader.php'; ?>  
- 
- 
+
+<?php include 'userheader.php'; ?> 
+
 <div class="page_content_wrap">
 <div class="content_wrap">
  
 <div class="content">
 
 
-<?php
+<?php 
 
-//	include '../conclass.php';
-//  $obj=new conclass();
- //$res=$obj->getdata("select * from que_tbl where fk_cat_id=$cid and flag=1");
-
-$obj1=new conclass();
-$res1=$obj1->getdata("select count(a.pk_ans_id)'cnt',q.* from que_tbl as q ,ans_tbl as a where a.fk_q_id=q.pk_q_id and q.fk_email_id='$email' group by q.q_title");
+	$obj=new conclass();
+	$res1=$obj1->getdata('select count(c.pk_c_id)"cnt",d.* from discussion_tbl as d,comment_tbl as c where c.fk_d_id=d.pk_d_id group by d.d_title');
 	
-	
-	
-while($row=MYSQL_fetch_array($res1,MYSQL_ASSOC))
+		while($row=MYSQL_fetch_array($res1,MYSQL_ASSOC))
 		{
-//$obj=new conclass();
-	
-		$id=$row["pk_q_id"];
-			$title=$row["q_title"];
-			$desc=$row["q_desc"];
-			$date=$row["q_date"];
-			$ans=$row["cnt"];
+			$id=$row["pk_d_id"];
+			$title=$row["d_title"];
+			$desc=$row["d_desc"];
+			$date=$row["d_date"];
+			$comment=$row["cnt"];
+	//		$_SESSION["id"]=$id;
+	//	$_SESSION["id"]=$id;
 			$email1=$row["fk_email_id"];
 			$obj=new conclass();
-			$res2=mysql_query("select * from que_view_tbl where fk_que_id=$id");
+			$res2=mysql_query("select * from user_tbl where pk_email_id='$email1'");
 			while($row=MYSQL_fetch_array($res2,MYSQL_ASSOC))
-			{
-				$view=$row["view"];
-			}
-			$obj=new conclass();
-			$res3=mysql_query("select * from user_tbl where pk_email_id='$email1'");
-			while($row=MYSQL_fetch_array($res3,MYSQL_ASSOC))
 			{
 				$photo=$row["u_pic"];
 				$name=$row["u_name"];
@@ -100,26 +88,22 @@ while($row=MYSQL_fetch_array($res1,MYSQL_ASSOC))
 			echo '<figure class="sc_image alignleft sc_image_shape_round ">';
 			
 				echo '<img alt="" src="'.$photo.'"> ';
-			//	echo $email;
-	
-			echo '</figure>';
-			echo '<h3>';
-			echo '<a href="single_question.html">'.$title.'</a><br>';
-		//	echo '<a href="single_question.html" style="font-size:20px">'.$desc.'</a>';
-			echo '</h3><br>';
+				echo '</figure>';
+			echo '<h5>';
+			echo '<a class="question_title alignleft ">'.$name.'</a><br></h5>';
+			
+			
+			echo '<h6 class="question_title alignleft "><span class="glyphicon glyphicon-time">'.$date.'</span></h6>';
+			echo '<br>';
+			echo '<br>';
 			echo '<div class="question-author"></div>';
 			echo '<div class="question-inner">';
 			echo '<div class="clearfix"></div>';
+			echo '<h5 class="question-desc" >'.$title.'</h5>';
 			echo '<p class="question-desc" >'.$desc.'</p>';
-			echo '<div class="post_info" style="font-size:20px">';
-			echo '<span class="post_info_item post_info_counters"><span class="glyphicon glyphicon-time"></span>';
-			echo '<a class="post_info_date">'.$date.'</a>';
-			echo '</span>';
-			echo '<span class="post_info_item post_info_counters"><span class="glyphicon glyphicon-comment"></span>	';
-			echo '<a href="ans.php?id='.$id.'" class="post_info_author">'.$ans.' answer</a>';
-			echo '</span>';
-			echo '<span class="post_info_item post_info_counters "><span class="glyphicon glyphicon-user"></span>';
-			echo '<a  >'.$view.' views</a>';
+			echo '<div class="post_info alignright" style="font-size:20px">';
+		echo '<span class="post_info_item post_info_counters"><span class="glyphicon glyphicon-comment"></span>	';
+			echo '<a href="comment.php?id='.$id.'" class="post_info_author">'.$comment.' comments</a>';
 			echo '</span>';
 			echo '</div>';
 			echo '</article>';
@@ -127,23 +111,19 @@ while($row=MYSQL_fetch_array($res1,MYSQL_ASSOC))
 			echo '</article>';
 			echo '<br><br>';
 
-		}
+	}
+
+
 ?>
 
 
-
- 
- 
-
- 
- 
 
 </div>
  
  
 <div class="sidebar widget_area bg_tint_light sidebar_style_light">
  
-<aside class="widget"><a href="myque.php">
+<aside class="widget"><a href="disforum.php">
 <h3 class="widget_title" style="color:green;">Categories</h3></a>
 <ul>
 <?php //include 'conclass.php';
@@ -155,7 +135,7 @@ $obj=new conclass();
 		while($row=MYSQL_fetch_array($res,MYSQL_ASSOC))
 		{
 			echo '<h5>';
-			echo '<li class="menu-item"><a href="catmyque.php?id='.$row["pk_cat_id"].'">'.$row["cat_name"];
+			echo '<li class="menu-item"><a href="discatforum.php?id='.$row["pk_cat_id"].'">'.$row["cat_name"];
 			echo '</a>
 				</li></h5>';
 		}
@@ -172,8 +152,8 @@ $obj=new conclass();
  
  
 
-<?php include 'userfooter.php'; ?>  
  
+<?php include 'userfooter.php'; ?>  
  
 </div>
 </div>

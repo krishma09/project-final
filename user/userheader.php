@@ -86,7 +86,7 @@ $obj=new conclass();
 <li class="menu-item"><a href="video-tutorials.html">Video Tutorials</a></li>
 </ul>
 </li>
-<li class="menu-item current-menu-ancestor current-menu-parent menu-item-has-children"><a href="">Question-Answer</a>
+<li class="menu-item menu-item-has-children"><a href="">Question-Answer</a>
 <ul class="sub-menu">
 <li class="menu-item"><a href="addque.php">Asks Question</a></li>
 <li class="menu-item"><a href="que-ans.php">View Questions-Answers</a></li>
@@ -95,7 +95,7 @@ $obj=new conclass();
 </ul>
 
 </li>
-<li class="menu-item menu-item-has-children"><a href="team-members.html">Discussion forum</a>
+<li class="menu-item menu-item-has-children"><a href="disforum.php">Discussion forum</a>
 
 </li>
 <li class="menu-item menu-item-has-children"><a href="">Test</a>

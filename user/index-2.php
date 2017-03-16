@@ -148,7 +148,7 @@ $obj=new conclass();
 </ul>
 
 </li>
-<li class="menu-item menu-item-has-children"><a href="team-members.html">Discussion forum</a>
+<li class="menu-item menu-item-has-children"><a href="disforum.php">Discussion forum</a>
 
 </li>
 <li class="menu-item menu-item-has-children"><a href="">Test</a>

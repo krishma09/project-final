@@ -54,7 +54,7 @@ session_start();
 
 <?php 
 //$qid=$_SESSION["q_id"];
-$qid=$_REQUEST["id"];
+
 /*if($_REQUEST["id"]!=NULL)
 {
 $_SESSION["id"]=$_REQUEST["id"];
@@ -64,6 +64,8 @@ else
 {
 	$qid=$_SESSION["id"];
 }*/
+
+$qid=$_REQUEST["id"];
 $obj=new conclass();
 
 		$res1=$obj->getdata("select * from que_view_tbl where fk_que_id='$qid'");
@@ -122,6 +124,13 @@ $obj=new conclass();
 			$date=$row["ans_date"];
 			$img=$row["ans_img"];
 			
+			$obj=new conclass();
+			$res3=mysql_query("select * from user_tbl where pk_email_id='$e_id'");
+			while($row=MYSQL_fetch_array($res3,MYSQL_ASSOC))
+			{
+				$photo=$row["u_pic"];
+				$name=$row["u_name"];
+			}
 			
 			$obj=new conclass();
 			$res2=mysql_query("select * from ans_like_tbl where fk_ans_id='$id'");
@@ -129,7 +138,7 @@ $obj=new conclass();
 			{
 				$like=$row["ans_like"];
 			}
-				
+			
 			echo '<article class="post_item post_item_single page">';
 			echo '<section class="post_content">';
 			echo '<div class="tab-inner-warp" style="display: block;">';
@@ -141,7 +150,7 @@ $obj=new conclass();
 			
 			echo '<figure class="sc_image alignleft sc_image_shape_round ">';
 			
-				echo '<img alt="" src="http://2code.info/demo/html/ask-me/images/demo/avatar.png"> ';
+				echo '<img alt="" src="'.$photo.'"> ';
 			//	echo $email;
 	
 			echo '</figure>';

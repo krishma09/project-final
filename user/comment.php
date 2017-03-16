@@ -13,7 +13,7 @@ session_start();
 <script src="../scripts/bootstrap.js"></script>
 
 <link rel="icon" type="image/x-icon" href="images/favicon.ico"/>
-<title>My Question | knowledge.com</title>
+<title>Comments | knowledge.com</title>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans%3A300italic%2C400italic%2C600italic%2C300%2C400%2C600&amp;subset=latin%2Clatin-ext&amp;ver=4.3.1" type="text/css" media="all"/>
 <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Roboto:100,100italic,300,300italic,400,400italic,700,700italic&amp;subset=latin,latin-ext,cyrillic,cyrillic-ext" type="text/css" media="all"/>
 <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Love+Ya+Like+A+Sister:400&amp;subset=latin" type="text/css" media="all"/>
@@ -38,142 +38,165 @@ session_start();
 <link rel="stylesheet" href="css/responsive.css" type="text/css" media="all"/>
 <link rel="stylesheet" href="css/skins/skin-responsive.css" type="text/css" media="all"/>
 </head>
-<body class="page body_style_wide body_filled article_style_boxed template_single-standard top_panel_style_dark top_panel_opacity_solid top_panel_above menu_right sidebar_show sidebar_right">
+<body class="page body_style_wide body_filled article_style_boxed template_single-standard top_panel_style_dark top_panel_opacity_solid top_panel_above menu_right sidebar_hide">
 <a id="toc_top" class="sc_anchor" title="To Top" data-description="&lt;i&gt;Back to top&lt;/i&gt; - &lt;br&gt;scroll to top of the page" data-icon="icon-angle-double-up" data-url="" data-separator="yes"></a>
  
 <div class="body_wrap">
 <div class="page_wrap">
 <div class="top_panel_fixed_wrap"></div>
-<?php include 'userheader.php'; ?>  
- 
- 
+
+<?php include 'userheader.php'; ?> 
+
+
 <div class="page_content_wrap">
-<div class="content_wrap">
- 
-<div class="content">
+<div class="content_wrap" style=" padding-right:100px;">
+<div class="content" style=" padding-left:100px;">
 
+<?php 
+$did=$_REQUEST["id"];
+		$obj2=new conclass();
 
-<?php
+		$res1=$obj2->getdata("select * from discussion_tbl where pk_d_id='$did'");
 
-//	include '../conclass.php';
-//  $obj=new conclass();
- //$res=$obj->getdata("select * from que_tbl where fk_cat_id=$cid and flag=1");
-
-$obj1=new conclass();
-$res1=$obj1->getdata("select count(a.pk_ans_id)'cnt',q.* from que_tbl as q ,ans_tbl as a where a.fk_q_id=q.pk_q_id and q.fk_email_id='$email' group by q.q_title");
-	
-	
-	
-while($row=MYSQL_fetch_array($res1,MYSQL_ASSOC))
+		while($row=MYSQL_fetch_array($res1,MYSQL_ASSOC))
 		{
-//$obj=new conclass();
+			$title=$row["d_title"];
+			$desc=$row["d_desc"];
 	
-		$id=$row["pk_q_id"];
-			$title=$row["q_title"];
-			$desc=$row["q_desc"];
-			$date=$row["q_date"];
-			$ans=$row["cnt"];
+		}
+?>
+
+<article class="post_item post_item_single page">
+			<section class="post_content">
+			<div class="tab-inner-warp" style="display: block;">
+			<div class="tab-inner">
+			<div class="sc_section" data-animation="animated fadeInUp normal">
+			<center>	<h3><?php echo $title; ?>
+				</h3><h6><?php echo $desc; ?></h6></center>
+			</div>
+			</div>
+			</div>
+			<article class="question question-type-normal">
+			</article>
+			</section>
+			</article>
+			<br><br>
+		
+
+
+
+<article class="post_item post_item_single page">
+			<section class="post_content">
+			<div class="tab-inner-warp" style="display: block;">
+			<div class="tab-inner">
+			<div class="sc_section" data-animation="animated fadeInUp normal">
+
+<?php 
+
+	$obj=new conclass();
+	$res1=$obj1->getdata("select * from comment_tbl where fk_d_id='$did'");
+	
+		while($row=MYSQL_fetch_array($res1,MYSQL_ASSOC))
+		{
+			$date=$row["date"];
+			$comment=$row["comment"];
+	//		$_SESSION["id"]=$id;
+	//	$_SESSION["id"]=$id;
 			$email1=$row["fk_email_id"];
 			$obj=new conclass();
-			$res2=mysql_query("select * from que_view_tbl where fk_que_id=$id");
+			$res2=mysql_query("select * from user_tbl where pk_email_id='$email1'");
 			while($row=MYSQL_fetch_array($res2,MYSQL_ASSOC))
-			{
-				$view=$row["view"];
-			}
-			$obj=new conclass();
-			$res3=mysql_query("select * from user_tbl where pk_email_id='$email1'");
-			while($row=MYSQL_fetch_array($res3,MYSQL_ASSOC))
 			{
 				$photo=$row["u_pic"];
 				$name=$row["u_name"];
 			}
-
-			echo '<article class="post_item post_item_single page">';
-			echo '<section class="post_content">';
-			echo '<div class="tab-inner-warp" style="display: block;">';
-			echo '<div class="tab-inner">';
-			echo '<div class="sc_section" data-animation="animated fadeInUp normal">';
 
 			echo '<article class="question question-type-normal">';
 			echo '<a original-title="ahmed" class="question-author-img tooltip-n"><span></span>';
 			
 			echo '<figure class="sc_image alignleft sc_image_shape_round ">';
 			
-				echo '<img alt="" src="'.$photo.'"> ';
-			//	echo $email;
-	
-			echo '</figure>';
-			echo '<h3>';
-			echo '<a href="single_question.html">'.$title.'</a><br>';
-		//	echo '<a href="single_question.html" style="font-size:20px">'.$desc.'</a>';
-			echo '</h3><br>';
+				echo '<img alt="" src="'.$photo.'" height="50px" width="50px"> ';
+				echo '</figure>';
+			echo '<h5>';
+			echo '<a class="question_title alignleft ">'.$name.'</a><br></h5>';
+			
+			
+			echo '<h6 class="question_title alignleft "><span class="glyphicon glyphicon-time">'.$date.'</span></h6>';
+			echo '<br>';
+			echo '<br>';
 			echo '<div class="question-author"></div>';
 			echo '<div class="question-inner">';
 			echo '<div class="clearfix"></div>';
-			echo '<p class="question-desc" >'.$desc.'</p>';
-			echo '<div class="post_info" style="font-size:20px">';
-			echo '<span class="post_info_item post_info_counters"><span class="glyphicon glyphicon-time"></span>';
-			echo '<a class="post_info_date">'.$date.'</a>';
-			echo '</span>';
-			echo '<span class="post_info_item post_info_counters"><span class="glyphicon glyphicon-comment"></span>	';
-			echo '<a href="ans.php?id='.$id.'" class="post_info_author">'.$ans.' answer</a>';
-			echo '</span>';
-			echo '<span class="post_info_item post_info_counters "><span class="glyphicon glyphicon-user"></span>';
-			echo '<a  >'.$view.' views</a>';
-			echo '</span>';
-			echo '</div>';
+		//	echo '<h5 class="question-desc" >'.$title.'</h5>';
+			echo '<p class="question-desc" >'.$comment.'</p>';
 			echo '</article>';
-			echo '</section>';
-			echo '</article>';
-			echo '<br><br>';
-
+			
 		}
+
+
 ?>
 
+ </div>
+			</div>
+			</div>
+			<article class="question question-type-normal">
+			<center>
+			
+			<!-- Button trigger modal -->
+<button type="button" class="sc_button sc_button_square sc_button_style_filled sc_button_bg_link sc_button_size_midum aligncenter sc_buttons_st1 sc_buttons_st5" data-toggle="modal" data-target="#myModal">
+  Add Comment
+</button>
 
-
- 
- 
-
- 
- 
-
-</div>
- 
- 
-<div class="sidebar widget_area bg_tint_light sidebar_style_light">
- 
-<aside class="widget"><a href="myque.php">
-<h3 class="widget_title" style="color:green;">Categories</h3></a>
-<ul>
-<?php //include 'conclass.php';
-$obj=new conclass();
-
-		$res=$obj->getdata("select * from category_tbl");
-		$obj1=new conclass();
-
-		while($row=MYSQL_fetch_array($res,MYSQL_ASSOC))
-		{
-			echo '<h5>';
-			echo '<li class="menu-item"><a href="catmyque.php?id='.$row["pk_cat_id"].'">'.$row["cat_name"];
-			echo '</a>
-				</li></h5>';
-		}
+<!-- Modal -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+	<form method="post" action="">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">Comment</h4>
+      </div>
+      <div class="modal-body">
+				<input type="text" name="comm">
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <input type="submit" name="submit" value="Add" class="btn btn-primary">
+		<?php 
+			if(isset($_POST["submit"]))
+			{
+				$com=$_POST["comm"];
+				$date=date("d-m-y g:i A");
+				$email=$_SESSION["email"];
+				$obj=new conclass();
+			$res2=mysql_query("insert into comment_tbl values('$did','$email','$com','$date',NULL)");
+			if($res2==1)
+			{
+				header("location:comment.php?id=$did");
+			}
+			}
+		
 		?>
+      </div>
+    </div>
+	</form>
+  </div>
+</div>
+			
+			
+			
+			
+			</center>
+			</article>
+			</section>
+			</article>
+ </div>
+</div>
+</div> 
 
-</ul>
-</aside>
  
-  
-</div>
- 
-</div>
-</div>
- 
- 
-
 <?php include 'userfooter.php'; ?>  
- 
  
 </div>
 </div>

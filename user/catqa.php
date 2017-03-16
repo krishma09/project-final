@@ -81,6 +81,13 @@ while($row=MYSQL_fetch_array($res1,MYSQL_ASSOC))
 				$view=$row["view"];
 			}
 			
+			$obj=new conclass();
+			$res3=mysql_query("select * from user_tbl where pk_email_id='$email1'");
+			while($row=MYSQL_fetch_array($res3,MYSQL_ASSOC))
+			{
+				$photo=$row["u_pic"];
+				$name=$row["u_name"];
+			}
 			echo '<article class="post_item post_item_single page">';
 			echo '<section class="post_content">';
 			echo '<div class="tab-inner-warp" style="display: block;">';
@@ -92,7 +99,7 @@ while($row=MYSQL_fetch_array($res1,MYSQL_ASSOC))
 			
 			echo '<figure class="sc_image alignleft sc_image_shape_round ">';
 			
-				echo '<img alt="" src="http://2code.info/demo/html/ask-me/images/demo/avatar.png"> ';
+				echo '<img alt="" src="'.$photo.'"> ';
 			//	echo $email;
 	
 			echo '</figure>';
