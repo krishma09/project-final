@@ -52,11 +52,74 @@ session_start();
  
 <div class="content">
 
+<?php 
+
+	$did=$_REQUEST["id"];
+
+?>
+
+
+
+
+
+			<!-- Button trigger modal -->
+<button type="button" class="sc_button sc_button_square sc_button_style_filled sc_button_bg_link sc_button_size_midum alignleft sc_buttons_st1 sc_buttons_st5" data-toggle="modal" data-target="#myModal">
+  Start New Discussion
+</button>
+
+<!-- Modal -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+	<form method="post" action="">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">New Discussion</h4>
+      </div>
+      <div class="modal-body">
+			Topic of Discussion:	<input type="text" name="topic"><br><br>
+			Description of Topic:	<textarea rows="5" cols="50" name="descoftopic"></textarea><br><br>
+			
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <input type="submit" name="submit" value="Add" class="btn btn-primary">
+		<?php 
+			if(isset($_POST["submit"]))
+			{
+				$topic=$_POST["topic"];
+				$descoftopic=$_POST["descoftopic"];
+				$sub=$did;
+				$date=date("d-m-y g:i A");
+				$email=$_SESSION["email"];
+				$obj=new conclass();
+			$res2=mysql_query("insert into discussion_tbl values(NULL,'$sub','$topic','$descoftopic','$date','$email')");
+			if($res2==1)
+			{
+				header("location:discatforum.php?id=$did");
+			}
+			}
+		
+		?>
+      </div>
+    </div>
+	</form>
+  </div>
+</div>
+<br><br><br>
+
+
+
+
+
+
+
+
+
 
 <?php 
-	$did=$_REQUEST["id"];
 	$obj=new conclass();
-	$res1=$obj1->getdata("select count(c.pk_c_id)'cnt',d.* from discussion_tbl as d,comment_tbl as c where c.fk_d_id=d.pk_d_id and d.fk_cat_id=$did group by d.d_title");
+	$res1=$obj1->getdata("select * from discussion_tbl where fk_cat_id=$did");
 	
 		while($row=MYSQL_fetch_array($res1,MYSQL_ASSOC))
 		{
@@ -64,7 +127,7 @@ session_start();
 			$title=$row["d_title"];
 			$desc=$row["d_desc"];
 			$date=$row["d_date"];
-			$comment=$row["cnt"];
+	//		$comment=$row["cnt"];
 	//		$_SESSION["id"]=$id;
 	//	$_SESSION["id"]=$id;
 			$email1=$row["fk_email_id"];
@@ -103,7 +166,7 @@ session_start();
 			echo '<p class="question-desc" >'.$desc.'</p>';
 			echo '<div class="post_info alignright" style="font-size:20px">';
 		echo '<span class="post_info_item post_info_counters"><span class="glyphicon glyphicon-comment"></span>	';
-			echo '<a href="comment.php?id='.$id.'" class="post_info_author">'.$comment.' comments</a>';
+			echo '<a href="comment.php?id='.$id.'" class="post_info_author">comments</a>';
 			echo '</span>';
 			echo '</div>';
 			echo '</article>';
