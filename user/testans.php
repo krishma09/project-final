@@ -1,9 +1,9 @@
 <?php 
 session_start();
-$cid=$_REQUEST["id"];
-$cnt=$_SESSION["num"];
-$_SESSION["num"]=$_SESSION["num"]+1;
+
 $marks=$_SESSION["mark"];
+$cid=$_REQUEST["id"];
+//echo $_SESSION["mark"];
 ?>
 <!DOCTYPE html>
 <html lang="en-US">
@@ -71,55 +71,41 @@ $marks=$_SESSION["mark"];
 			$sub=$row["cat_name"];
 			
 		}
-			echo '<h3 class="Title aligncenter" >'.$sub.' TEST</h3>' ;
+			echo '<h3 class="Title aligncenter" style="color:green">'.$sub.' TEST RESULT</h3>' ;
+			
+			$obj=new conclass();
+	$res1=$obj->getdata("select count(t.pk_t_id)'cnt',t.* from test_tbl as t where t.fk_cat_id=$cid");
+			while($row=MYSQL_fetch_array($res1,MYSQL_ASSOC))
+		{
+			$totmarks=$row["cnt"];
+			
+		}
+		
+			?>
+			<?php 
+			
+			$per=($marks/$totmarks)*100;
+			$per=round($per,0,PHP_ROUND_HALF_UP);
+			if($per>=90)
+			{
+				$str="You Performed Best !!";
+			}
+			else if($per>=75 && $per<=89)
+			{
+				$str="You Performed Good !!";
+			}
+			else{
+				$str="You must study harder !!";
+			}
 			?>
 
+			<h3 class="question aligncenter" data-animation="animated fadeInUp normal"><?php echo $marks; ?> Of <?php echo $totmarks;?></h3>
 			
-		<?php 
-		
-					$obj2=new conclass();
-	$res1=$obj2->getdata("select * from test_tbl where fk_cat_id='$cid' ");
-	$abc=mysql_num_rows($res1);
+			<h4 class="question aligncenter" data-animation="animated fadeInUp normal"><?php echo $per; ?> %</h4>
 			
-			if($abc>=$cnt)
-			{
-		$res1=$obj2->getdata("select * from test_tbl where fk_cat_id='$cid' and pk_t_id='$cnt'");
-				//$row=mysql_fetch_array($res1[$cnt],MYSQL_ASSOC);
-		
-		
-			while($row=mysql_fetch_assoc($res1))
-			{
-				
-			$que=$row["t_que"];
-			$option1=$row["t_option1"];
-			$option2=$row["t_option2"];
-			$option3=$row["t_option3"];
-			$option4=$row["t_option4"];
-			$ans=$row["t_answer"];
-			$tid=$row["pk_t_id"];
-
-		
 			
-			}
-			}
-			else
-			{
-				header("location:testans.php?id=$cid");
-			}
-		?>	
+			<h4 class="question aligncenter" data-animation="animated fadeInUp normal"><?php echo $str; ?> </h4>
 			
-			<h5 class="question alignleft" data-animation="animated fadeInUp normal"><?php echo $que; ?>
-			</h5><h5 class="option alignleft" data-animation="animated fadeInUp normal" style="padding-left:60px">
-			<input type="radio" name="option" value="<?php echo $option1; ?>"><?php echo $option1; ?><br>
-			<input type="radio" name="option" value="<?php echo $option2; ?>"><?php echo $option2; ?><br>
-			<input type="radio" name="option" value="<?php echo $option3; ?>"><?php echo $option3; ?><br>
-			<input type="radio" name="option" value="<?php echo $option4; ?>"><?php echo $option4; ?>
-			<br></h5>
-			<br><br>
-			
-			<h6 class="button aligncenter"  >
-			 <input type="submit" name="next" value="Next Question" class="sc_button sc_button_square sc_button_style_filled sc_button_bg_link sc_button_size_midum aligncenter sc_buttons_st1 sc_buttons_st5"></h6>
-	
 			</form>
 			</div>
 			</div>

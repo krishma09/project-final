@@ -1,5 +1,7 @@
 <?php 
 session_start();
+$_SESSION["num"]=1;
+$_SESSION["mark"]=0;
 ?>
 
 <!DOCTYPE html>
