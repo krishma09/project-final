@@ -121,24 +121,33 @@ $res=$obj->getdata("select * from user_tbl where pk_email_id='$email'");
 <ul class="sub-menu">
 <li class="menu-item menu-item-has-children"><a href="typography.html">Typography</a>
 <ul class="sub-menu">
-<?php //include 'conclass.php';
-$obj=new conclass();
-
-		$res=$obj->getdata("select * from category_tbl");
-		$obj1=new conclass();
-
-		while($row=MYSQL_fetch_array($res,MYSQL_ASSOC))
-		{
-			echo '<li class="menu-item"><a href="cat.php?id='.$row["pk_cat_id"].'">'.$row["cat_name"];
-			echo '</a>
-				<li>';
-
-		}
-?>
-
+<li class="menu-item"><a href="2_data.php">HTML</a></li>
+<li class="menu-item"><a href="35_data.php">CSS</a></li>
+<li class="menu-item"><a href="">JAVASCRIPT</a></li>
+<li class="menu-item"><a href="">PL/SQL</a></li>
+<li class="menu-item"><a href="">PHP</a></li>
+<li class="menu-item"><a href="">BOOTSTRAP</a></li>
+<li class="menu-item"><a href="">JQUERY</a></li>
+<li class="menu-item"><a href="">ANGULAR</a></li>
+<li class="menu-item"><a href="">C</a></li>
+<li class="menu-item"><a href="">C++</a></li>
+<li class="menu-item"><a href="">DS</a></li>
+<li class="menu-item"><a href="">NODE.JS</a></li>
+<li class="menu-item"><a href="">VB.NET</a></li>
+<li class="menu-item"><a href="">ASP.NET</a></li>
+<li class="menu-item"><a href="">LINUX</a></li>
+<li class="menu-item"><a href="">UNIX</a></li>
+<li class="menu-item"><a href="">DCN</a></li>
+<li class="menu-item"><a href="">ANGULAR2</a></li>
+<li class="menu-item"><a href="">AJAX</a></li>
+<li class="menu-item"><a href="">WORDPRESS</a></li>
+<li class="menu-item"><a href="">JOOMLA</a></li>
+<li class="menu-item"><a href="">JAVA</a></li>
+<li class="menu-item"><a href="">OS</a></li>
 </ul>
+
 </li>
-<li class="menu-item"><a href="video-tutorials.html">Video Tutorials</a></li>
+<li class="menu-item"><a href="videotutorial.php">Video Tutorials</a></li>
 </ul>
 </li>
 <li class="menu-item menu-item-has-children"><a href="">Question-Answer</a>

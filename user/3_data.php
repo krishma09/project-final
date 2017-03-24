@@ -13,7 +13,7 @@ session_start();
 <script src="../scripts/bootstrap.js"></script>
 
 <link rel="icon" type="image/x-icon" href="images/favicon.ico"/>
-<title>View Question-Answer | knowledge.com</title>
+<title>HTML Tutorials | knowledge.com</title>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans%3A300italic%2C400italic%2C600italic%2C300%2C400%2C600&amp;subset=latin%2Clatin-ext&amp;ver=4.3.1" type="text/css" media="all"/>
 <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Roboto:100,100italic,300,300italic,400,400italic,700,700italic&amp;subset=latin,latin-ext,cyrillic,cyrillic-ext" type="text/css" media="all"/>
 <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Love+Ya+Like+A+Sister:400&amp;subset=latin" type="text/css" media="all"/>
@@ -53,87 +53,118 @@ session_start();
 <div class="content">
 
 
-<?php
-//	include '../conclass.php';
-  //$obj=new conclass();
- //$res=mysql_query("select * from que_tbl where flag=1");
-	
+<article class="post_item post_item_single page">
+<section class="post_content">
+<?php 
+	$sid=3;
 	$obj=new conclass();
-	$res1=$obj1->getdata('select count(a.pk_ans_id)"cnt",q.* from que_tbl as q,ans_tbl as a where a.fk_q_id=q.pk_q_id group by q.q_title');
-
-	
-while($row=MYSQL_fetch_array($res1,MYSQL_ASSOC))
+	$res=$obj->getdata("select * from subcat_tbl where pk_s_id='$sid'");
+		
+		while($row=MYSQL_fetch_array($res,MYSQL_ASSOC))
 		{
-			$id=$row["pk_q_id"];
-			$title=$row["q_title"];
-//			$desc=$row["q_desc"];
-			$date=$row["q_date"];
-			$ans=$row["cnt"];
-	//		$_SESSION["id"]=$id;
-	//	$_SESSION["id"]=$id;
-			$email1=$row["fk_email_id"];
-			$obj=new conclass();
-			$res2=mysql_query("select * from que_view_tbl where fk_que_id=$id");
-			while($row=MYSQL_fetch_array($res2,MYSQL_ASSOC))
-			{
-				$view=$row["view"];
-			}
-			$obj=new conclass();
-			$res3=mysql_query("select * from user_tbl where pk_email_id='$email1'");
-			while($row=MYSQL_fetch_array($res3,MYSQL_ASSOC))
-			{
-				$photo=$row["u_pic"];
-				$name=$row["u_name"];
-			}
-
-			echo '<article class="post_item post_item_single page">';
-			echo '<section class="post_content">';
-			echo '<div class="tab-inner-warp" style="display: block;">';
-			echo '<div class="tab-inner">';
-			echo '<div class="sc_section" data-animation="animated fadeInUp normal">';
-
-			echo '<article class="question question-type-normal">';
-			echo '<a original-title="ahmed" class="question-author-img tooltip-n"><span></span>';
-			
-			echo '<figure class="sc_image alignleft sc_image_shape_round ">';
-			
-				echo '<img alt="" src="'.$photo.'"> ';
-			//	echo $email;
-	
-			echo '</figure>';
-			echo '<h3>';
-			echo '<a>'.$title.'</a><br>';
-		//	echo '<a href="single_question.html" style="font-size:20px">'.$desc.'</a>';
-			echo '</h3><br>';
-			echo '<div class="question-author"></div>';
-			echo '<div class="question-inner">';
-			echo '<div class="clearfix"></div>';
-	//x		echo '<p class="question-desc" >'.$desc.'</p>';
-			echo '<div class="post_info" style="font-size:20px">';
-			echo '<span class="post_info_item post_info_counters"><span class="glyphicon glyphicon-time"></span>';
-			echo '<a class="post_info_date">'.$date.'</a>';
-			echo '</span>';
-			echo '<span class="post_info_item post_info_counters"><span class="glyphicon glyphicon-comment"></span>	';
-			echo '<a href="ans.php?id='.$id.'" class="post_info_author">'.$ans.' answer</a>';
-			echo '</span>';
-			echo '<span class="post_info_item post_info_counters "><span class="glyphicon glyphicon-user"></span>';
-			echo '<a  >'.$view.' views</a>';
-			echo '</span>';
-			echo '</div>';
-			echo '</article>';
-			echo '</section>';
-			echo '</article>';
-			echo '<br><br>';
-
+			$sname=$row["s_name"];
+			$desc1=$row["s_desc1"];
+			$desc2=$row["s_desc2"];
+			$desc3=$row["s_desc3"];
 		}
 ?>
 
 
 
- 
+<h3 class="widget_title" style="text-align:center"><?php echo $sname;?></h3>
+ <strong style="font-size:20px;">
+<div class="sc_line sc_line_style_solid margin_top_3em"></div>
+
+<h4 class="widget_title" style="text-align:left"><?php echo substr($desc1,0,37);?></h4>
+
+<p><?php echo substr($desc1,38,75);?></p>
+<p><?php echo substr($desc1,114,100);?></p>
+<p><?php echo substr($desc1,215,70);?></p>
+<p><?php echo substr($desc1,286,85);?></p>
+<div class="sc_line sc_line_style_solid margin_top_3em"></div>
+
+
+
+<h4 class="widget_title" style="text-align:left"><?php echo substr($desc2,0,27);?></h4>
+
+
+<div class="w3-example" style="padding-left:50px;">
+<h5><?php echo substr($desc2,27,22);?></h5> </div>
+<p style="padding-left:100px;"><?php echo substr($desc2,50,8);?> <strong style="font-size:18px;"><?php echo substr($desc2,58,12);?></strong><?php echo substr($desc2,70,62);?><strong style="font-size:18px;"><?php echo substr($desc2,132,7);?></strong>.</p>
+
+<h5 class="widget_title" style="padding-left:50px;"><?php echo substr($desc2,140,25);?></h5>
+<p style="padding-left:100px;"><?php echo substr($desc2,166,8);?><strong style="font-size:18px;"><?php echo substr($desc2,174,40);?></strong> </p>
+
+
+
+<div class="sc_line sc_line_style_solid margin_top_3em"></div>
+
+<h4 class="widget_title" style="text-align:left"><?php echo substr($desc2,215,30);?></h4>
+<p><?php echo substr($desc2,246,5);?><strong style="font-size:18px;"><?php echo substr($desc2,251,35);?></strong> </p>
+<p class="auto-style1"><?php echo substr($desc2,286,79);?>
+<span class="auto-style1">In </span><strong style="font-size:18px;">Preferences &gt; Format &gt; 
+</strong>choose<strong style="font-size:18px;"> "Plain Text"</strong></p>
+<p><?php echo substr($desc2,410,155);?> files".</p>
+<p style="font-weight: 700"><strong style="font-size:18px;">Then open a new document to place the code.</strong></p>
+
+
+
+<div class="sc_line sc_line_style_solid margin_top_3em"></div>
+
+
+<h4>Step 2: Write Some HTML</h4>
+<p style="padding-left:50px; font-size:19px;"><strong>Write or copy some HTML into Notepad.</strong></p>
+<div class="w3-example">
+<div class="w3-code notranslate htmlHigh" style="padding-left:100px; font-size:19px;">
+<span style="color:brown"><span style="color:mediumblue">&lt;</span>!DOCTYPE<span style="color:red"> html</span><span style="color:mediumblue">&gt;</span></span><br><span style="color:brown"><span style="color:mediumblue">&lt;</span>html<span style="color:mediumblue">&gt;</span></span><br><span style="color:brown"><span style="color:mediumblue">&lt;</span>body<span style="color:mediumblue">&gt;</span></span><br><br><span style="color:brown"><span style="color:mediumblue">&lt;</span>h1<span style="color:mediumblue">&gt;</span></span>My First Heading<span style="color:brown"><span style="color:mediumblue">&lt;</span>/h1<span style="color:mediumblue">&gt;</span></span><br><br>
+<span style="color:brown"><span style="color:mediumblue">&lt;</span>p<span style="color:mediumblue">&gt;</span></span>My first paragraph.<span style="color:brown"><span style="color:mediumblue">&lt;</span>/p<span style="color:mediumblue">&gt;</span></span><br><br><span style="color:brown"><span style="color:mediumblue">&lt;</span>/body<span style="color:mediumblue">&gt;</span></span><br><span style="color:brown"><span style="color:mediumblue">&lt;</span>/html<span style="color:mediumblue">&gt;</span></span></div>
+</div><br><br>
+<p><img alt="Notepad" src="images/img_notepad.png" class="w3-image"></p>
  
 
+<div class="sc_line sc_line_style_solid margin_top_3em"></div>
+
+<h4>Step 3: Save the HTML Page</h4>
+<p>Save the file on your computer. Select <strong>File &gt; Save as</strong> in the Notepad menu.</p>
+<p>Name the file <strong>"index.htm"</strong> and set the encoding to 
+<strong>UTF-8</strong> (which is the preferred encoding for HTML files).</p>
+<p><img alt="View in Browser" style="height:auto;width:631px" src="images/img_saveas.png" class="w3-image"></p>
+<div class="w3-panel w3-note">
+  <p>You can use either .htm or .html as file extension. There is no difference, it is up to you.</p>
+</div>
+
+
+
+
+
+
+<div class="sc_line sc_line_style_solid margin_top_3em"></div>
+
+<h4>Step 4: View the HTML Page in Your Browser</h4>
+<p>Open the saved HTML file in your favorite browser (double click on the file, 
+or right-click - and choose "Open with").</p>
+<p><img alt="View in Browser" src="images/img_chrome.png" class="w3-image"></p>
+
+
+
+</strong>
+<div class="sc_line sc_line_style_solid margin_top_3em"></div>
+
+<div class="row">
+<a href="2_data.php"> <button class="sc_button sc_button_square sc_button_style_filled sc_button_bg_link sc_button_size_small alignleft sc_buttons_st1 sc_buttons_st5">Previous</button></a>
+
+<div style="padding-right:50px">
+
+<a href="4_data.php"> <button class="sc_button sc_button_square sc_button_style_filled sc_button_bg_link sc_button_size_small alignright sc_buttons_st1 sc_buttons_st5">NEXT</button></a>
+</div>
+ </div>
  
+ 
+</section>
+</article>
+
+
+
  
 
 </div>
@@ -141,26 +172,9 @@ while($row=MYSQL_fetch_array($res1,MYSQL_ASSOC))
  
 <div class="sidebar widget_area bg_tint_light sidebar_style_light">
  
-<aside class="widget"><a href="que-ans.php">
-<h3 class="widget_title" style="color:green;">Categories</h3></a>
-<ul>
-<?php //include 'conclass.php';
-$obj=new conclass();
+<aside class="widget">
 
-		$res=$obj->getdata("select * from category_tbl");
-		$obj1=new conclass();
-
-		while($row=MYSQL_fetch_array($res,MYSQL_ASSOC))
-		{
-			echo '<h5>';
-			echo '<li class="menu-item"><a href="catqa.php?id='.$row["pk_cat_id"].'">'.$row["cat_name"];
-			echo '</a>
-				</li></h5>';
-		}
-		?>
-
-</ul>
-</aside>
+<?php include 'html_header.php'; ?></aside>
  
   
 </div>

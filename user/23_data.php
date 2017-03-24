@@ -13,7 +13,7 @@ session_start();
 <script src="../scripts/bootstrap.js"></script>
 
 <link rel="icon" type="image/x-icon" href="images/favicon.ico"/>
-<title>View Question-Answer | knowledge.com</title>
+<title>HTML Tutorials | knowledge.com</title>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans%3A300italic%2C400italic%2C600italic%2C300%2C400%2C600&amp;subset=latin%2Clatin-ext&amp;ver=4.3.1" type="text/css" media="all"/>
 <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Roboto:100,100italic,300,300italic,400,400italic,700,700italic&amp;subset=latin,latin-ext,cyrillic,cyrillic-ext" type="text/css" media="all"/>
 <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Love+Ya+Like+A+Sister:400&amp;subset=latin" type="text/css" media="all"/>
@@ -53,87 +53,85 @@ session_start();
 <div class="content">
 
 
-<?php
-//	include '../conclass.php';
-  //$obj=new conclass();
- //$res=mysql_query("select * from que_tbl where flag=1");
-	
+<article class="post_item post_item_single page">
+<section class="post_content">
+<?php 
+	$sid=23;
 	$obj=new conclass();
-	$res1=$obj1->getdata('select count(a.pk_ans_id)"cnt",q.* from que_tbl as q,ans_tbl as a where a.fk_q_id=q.pk_q_id group by q.q_title');
-
-	
-while($row=MYSQL_fetch_array($res1,MYSQL_ASSOC))
+	$res=$obj->getdata("select * from subcat_tbl where pk_s_id='$sid'");
+		
+		while($row=MYSQL_fetch_array($res,MYSQL_ASSOC))
 		{
-			$id=$row["pk_q_id"];
-			$title=$row["q_title"];
-//			$desc=$row["q_desc"];
-			$date=$row["q_date"];
-			$ans=$row["cnt"];
-	//		$_SESSION["id"]=$id;
-	//	$_SESSION["id"]=$id;
-			$email1=$row["fk_email_id"];
-			$obj=new conclass();
-			$res2=mysql_query("select * from que_view_tbl where fk_que_id=$id");
-			while($row=MYSQL_fetch_array($res2,MYSQL_ASSOC))
-			{
-				$view=$row["view"];
-			}
-			$obj=new conclass();
-			$res3=mysql_query("select * from user_tbl where pk_email_id='$email1'");
-			while($row=MYSQL_fetch_array($res3,MYSQL_ASSOC))
-			{
-				$photo=$row["u_pic"];
-				$name=$row["u_name"];
-			}
-
-			echo '<article class="post_item post_item_single page">';
-			echo '<section class="post_content">';
-			echo '<div class="tab-inner-warp" style="display: block;">';
-			echo '<div class="tab-inner">';
-			echo '<div class="sc_section" data-animation="animated fadeInUp normal">';
-
-			echo '<article class="question question-type-normal">';
-			echo '<a original-title="ahmed" class="question-author-img tooltip-n"><span></span>';
-			
-			echo '<figure class="sc_image alignleft sc_image_shape_round ">';
-			
-				echo '<img alt="" src="'.$photo.'"> ';
-			//	echo $email;
-	
-			echo '</figure>';
-			echo '<h3>';
-			echo '<a>'.$title.'</a><br>';
-		//	echo '<a href="single_question.html" style="font-size:20px">'.$desc.'</a>';
-			echo '</h3><br>';
-			echo '<div class="question-author"></div>';
-			echo '<div class="question-inner">';
-			echo '<div class="clearfix"></div>';
-	//x		echo '<p class="question-desc" >'.$desc.'</p>';
-			echo '<div class="post_info" style="font-size:20px">';
-			echo '<span class="post_info_item post_info_counters"><span class="glyphicon glyphicon-time"></span>';
-			echo '<a class="post_info_date">'.$date.'</a>';
-			echo '</span>';
-			echo '<span class="post_info_item post_info_counters"><span class="glyphicon glyphicon-comment"></span>	';
-			echo '<a href="ans.php?id='.$id.'" class="post_info_author">'.$ans.' answer</a>';
-			echo '</span>';
-			echo '<span class="post_info_item post_info_counters "><span class="glyphicon glyphicon-user"></span>';
-			echo '<a  >'.$view.' views</a>';
-			echo '</span>';
-			echo '</div>';
-			echo '</article>';
-			echo '</section>';
-			echo '</article>';
-			echo '<br><br>';
-
+			$sname=$row["s_name"];
+			$desc1=$row["s_desc1"];
+			$desc2=$row["s_desc2"];
+			$desc3=$row["s_desc3"];
 		}
 ?>
 
 
 
+<h3 class="widget_title" style="text-align:center"><?php echo $sname;?></h3>
  
- 
+<div class="sc_line sc_line_style_solid margin_top_3em"></div>
+<strong style="font-size:20px;">
 
+
+
+
+<p>You can define an inline frame with HTML tag <b>&lt;iframe&gt;</b>. The &lt;iframe&gt; tag is not somehow related to &lt;frameset&gt; tag, instead, it can appear anywhere in your document. The &lt;iframe&gt; tag defines a rectangular region within the document in which the browser can display a separate document, including scrollbars and borders.</p>
+<p>The <b>src</b> attribute is used to specify the URL of the document that occupies the inline frame.</p>
+<h5>Example</h5>
+<p>Following is the example to show how to use the &lt;iframe&gt;:</p>
+<pre class="prettyprint notranslate tryit prettyprinted" style="cursor: default;"><span class="dec">&lt;!DOCTYPE html&gt;</span><span class="pln">
+</span><span class="tag">&lt;html&gt;</span><span class="pln">
+</span><span class="tag">&lt;head&gt;</span><span class="pln">
+</span><span class="tag">&lt;title&gt;</span><span class="pln">HTML Iframes</span><span class="tag">&lt;/title&gt;</span><span class="pln">
+</span><span class="tag">&lt;/head&gt;</span><span class="pln">
+</span><span class="tag">&lt;body&gt;</span><span class="pln">
+</span><span class="tag">&lt;p&gt;</span><span class="pln">Document content goes here...</span><span class="tag">&lt;/p&gt;</span><span class="pln">
+</span><span class="tag">&lt;iframe</span><span class="pln"> </span><span class="atn">src</span><span class="pun">=</span><span class="atv">"/html/menu.htm"</span><span class="pln"> </span><span class="atn">width</span><span class="pun">=</span><span class="atv">"555"</span><span class="pln"> </span><span class="atn">height</span><span class="pun">=</span><span class="atv">"200"</span><span class="tag">&gt;</span><span class="pln">
+   Sorry your browser does not support inline frames.
+</span><span class="tag">&lt;/iframe&gt;</span><span class="pln">
+</span><span class="tag">&lt;p&gt;</span><span class="pln">Document content also go here...</span><span class="tag">&lt;/p&gt;</span><span class="pln">
+</span><span class="tag">&lt;/body&gt;</span><span class="pln">
+</span><span class="tag">&lt;/html&gt;</span></pre>
+<br>
+<p>Most of the attributes of the &lt;iframe&gt; tag, including <i>name, class, frameborder, id, longdesc, marginheight, marginwidth, name, scrolling, style, and title</i> behave exactly like the corresponding attributes for the &lt;frame&gt; tag.</p>
+<table class="table table-bordered">
+<tbody><tr><th>Attribute</th><th>Description</th></tr>
+<tr><td>src</td><td>This attribute is used to give the file name that should be loaded in the frame. Its value can be any URL. For example, src="/html/top_frame.htm" will load an HTML file avalaible in html directory.</td></tr>
+<tr><td>name</td><td>This attribute allows you to give a name to a frame. It is used to indicate which frame a document should be loaded into. This is especially important when you want to create links in one frame that load pages into an another frame, in which case the second frame needs a name to identify itself as the target of the link.</td></tr>
+<tr><td>frameborder</td><td>This attribute specifies whether or not the borders of that frame are shown; it overrides the value given in the frameborder attribute on the &lt;frameset&gt; tag if one is given, and this can take values either 1 (yes) or 0 (no).</td></tr>
+<tr><td>marginwidth</td><td>This attribute allows you to specify the width of the space between the left and right of the frame's borders and the frame's content. The value is given in pixels. For example marginwidth="10".</td></tr>
+<tr><td>marginheight</td><td>This attribute allows you to specify the height of the space between the top and bottom of the frame's borders and its contents. The value is given in pixels. For example marginheight="10".</td></tr>
+<tr><td>noresize</td><td>By default you can resize any frame by clicking and dragging on the borders of a frame. The noresize attribute prevents a user from being able to resize the frame. For example noresize="noresize".</td></tr>
+<tr><td>scrolling</td><td>This attribute controls the appearance of the scrollbars that appear on the frame. This takes values either "yes", "no" or "auto". For example scrolling="no" means it should not have scroll bars.</td></tr>
+<tr><td>longdesc</td><td>This attribute allows you to provide a link to another page containing a long description of the contents of the frame. For example longdesc="framedescription.htm"</td></tr>
+</tbody></table>
+
+
+
+
+
+</strong>
+<div class="sc_line sc_line_style_solid margin_top_3em"></div>
+
+<div class="row">
+<a href="22_data.php"> <button class="sc_button sc_button_square sc_button_style_filled sc_button_bg_link sc_button_size_small alignleft sc_buttons_st1 sc_buttons_st5">Previous</button></a>
+
+<div style="padding-right:50px">
+
+<a href="24_data.php"> <button class="sc_button sc_button_square sc_button_style_filled sc_button_bg_link sc_button_size_small alignright sc_buttons_st1 sc_buttons_st5">NEXT</button></a>
+</div>
+ </div>
  
+ 
+</section>
+</article>
+
+
+
  
 
 </div>
@@ -141,25 +139,8 @@ while($row=MYSQL_fetch_array($res1,MYSQL_ASSOC))
  
 <div class="sidebar widget_area bg_tint_light sidebar_style_light">
  
-<aside class="widget"><a href="que-ans.php">
-<h3 class="widget_title" style="color:green;">Categories</h3></a>
-<ul>
-<?php //include 'conclass.php';
-$obj=new conclass();
-
-		$res=$obj->getdata("select * from category_tbl");
-		$obj1=new conclass();
-
-		while($row=MYSQL_fetch_array($res,MYSQL_ASSOC))
-		{
-			echo '<h5>';
-			echo '<li class="menu-item"><a href="catqa.php?id='.$row["pk_cat_id"].'">'.$row["cat_name"];
-			echo '</a>
-				</li></h5>';
-		}
-		?>
-
-</ul>
+<aside class="widget">
+<?php include 'html_header.php'; ?>
 </aside>
  
   

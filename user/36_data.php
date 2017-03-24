@@ -13,7 +13,7 @@ session_start();
 <script src="../scripts/bootstrap.js"></script>
 
 <link rel="icon" type="image/x-icon" href="images/favicon.ico"/>
-<title>View Question-Answer | knowledge.com</title>
+<title>CSS Tutorials | knowledge.com</title>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans%3A300italic%2C400italic%2C600italic%2C300%2C400%2C600&amp;subset=latin%2Clatin-ext&amp;ver=4.3.1" type="text/css" media="all"/>
 <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Roboto:100,100italic,300,300italic,400,400italic,700,700italic&amp;subset=latin,latin-ext,cyrillic,cyrillic-ext" type="text/css" media="all"/>
 <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Love+Ya+Like+A+Sister:400&amp;subset=latin" type="text/css" media="all"/>
@@ -53,87 +53,98 @@ session_start();
 <div class="content">
 
 
-<?php
-//	include '../conclass.php';
-  //$obj=new conclass();
- //$res=mysql_query("select * from que_tbl where flag=1");
-	
+<article class="post_item post_item_single page">
+<section class="post_content">
+<?php 
+	$sid=36;
 	$obj=new conclass();
-	$res1=$obj1->getdata('select count(a.pk_ans_id)"cnt",q.* from que_tbl as q,ans_tbl as a where a.fk_q_id=q.pk_q_id group by q.q_title');
-
-	
-while($row=MYSQL_fetch_array($res1,MYSQL_ASSOC))
+	$res=$obj->getdata("select * from subcat_tbl where pk_s_id='$sid'");
+		
+		while($row=MYSQL_fetch_array($res,MYSQL_ASSOC))
 		{
-			$id=$row["pk_q_id"];
-			$title=$row["q_title"];
-//			$desc=$row["q_desc"];
-			$date=$row["q_date"];
-			$ans=$row["cnt"];
-	//		$_SESSION["id"]=$id;
-	//	$_SESSION["id"]=$id;
-			$email1=$row["fk_email_id"];
-			$obj=new conclass();
-			$res2=mysql_query("select * from que_view_tbl where fk_que_id=$id");
-			while($row=MYSQL_fetch_array($res2,MYSQL_ASSOC))
-			{
-				$view=$row["view"];
-			}
-			$obj=new conclass();
-			$res3=mysql_query("select * from user_tbl where pk_email_id='$email1'");
-			while($row=MYSQL_fetch_array($res3,MYSQL_ASSOC))
-			{
-				$photo=$row["u_pic"];
-				$name=$row["u_name"];
-			}
-
-			echo '<article class="post_item post_item_single page">';
-			echo '<section class="post_content">';
-			echo '<div class="tab-inner-warp" style="display: block;">';
-			echo '<div class="tab-inner">';
-			echo '<div class="sc_section" data-animation="animated fadeInUp normal">';
-
-			echo '<article class="question question-type-normal">';
-			echo '<a original-title="ahmed" class="question-author-img tooltip-n"><span></span>';
-			
-			echo '<figure class="sc_image alignleft sc_image_shape_round ">';
-			
-				echo '<img alt="" src="'.$photo.'"> ';
-			//	echo $email;
-	
-			echo '</figure>';
-			echo '<h3>';
-			echo '<a>'.$title.'</a><br>';
-		//	echo '<a href="single_question.html" style="font-size:20px">'.$desc.'</a>';
-			echo '</h3><br>';
-			echo '<div class="question-author"></div>';
-			echo '<div class="question-inner">';
-			echo '<div class="clearfix"></div>';
-	//x		echo '<p class="question-desc" >'.$desc.'</p>';
-			echo '<div class="post_info" style="font-size:20px">';
-			echo '<span class="post_info_item post_info_counters"><span class="glyphicon glyphicon-time"></span>';
-			echo '<a class="post_info_date">'.$date.'</a>';
-			echo '</span>';
-			echo '<span class="post_info_item post_info_counters"><span class="glyphicon glyphicon-comment"></span>	';
-			echo '<a href="ans.php?id='.$id.'" class="post_info_author">'.$ans.' answer</a>';
-			echo '</span>';
-			echo '<span class="post_info_item post_info_counters "><span class="glyphicon glyphicon-user"></span>';
-			echo '<a  >'.$view.' views</a>';
-			echo '</span>';
-			echo '</div>';
-			echo '</article>';
-			echo '</section>';
-			echo '</article>';
-			echo '<br><br>';
-
+			$sname=$row["s_name"];
+			$desc1=$row["s_desc1"];
+			$desc2=$row["s_desc2"];
+			$desc3=$row["s_desc3"];
 		}
 ?>
 
 
 
+<h3 class="widget_title" style="text-align:center"><?php echo $sname;?></h3>
  
- 
+<div class="sc_line sc_line_style_solid margin_top_3em"></div>
+<strong style="font-size:20px;">
 
+
+
+
+<p><b>C</b>ascading <b>S</b>tyle <b>S</b>heets, fondly referred to as CSS, is a simple design language intended to simplify the process of making web pages presentable.</p>
+
+<p>CSS handles the look and feel part of a web page. Using CSS, you can control the color of the text, the style of fonts, the spacing between paragraphs, how columns are sized and laid out, what background images or colors are used, layout designs,variations in display for different devices and screen sizes as well as a variety of other effects.</p>
+<p>CSS is easy to learn and understand but it provides powerful control over the presentation of an HTML  document. Most commonly, CSS is combined with the markup languages HTML or XHTML.</p>
+<h4>Advantages of CSS</h4>
+<ul class="list">
+<li><p><b>CSS saves time</b> − You can write CSS once and then reuse same sheet in multiple HTML pages. You can define a style for each HTML element and apply it to as many Web pages as you want.</p></li>
+<li><p><b>Pages load faster</b> − If you are using CSS, you do not need to write HTML tag attributes every time. Just write one CSS rule of a tag and apply it to all the occurrences of that tag. So less code means faster download times.</p></li>
+<li><p><b>Easy maintenance</b> − To make a global change, simply change the style, and all elements in all the web pages will be updated automatically.</p></li>
+<li><p><b>Superior styles to HTML</b> − CSS has a much wider array of attributes than HTML, so you can give a far better look to your HTML page in comparison to HTML attributes.</p></li>
+<li><p><b>Multiple Device Compatibility</b> − Style sheets allow content to be optimized for more than one type of device. By using the same HTML document, different versions of a website can be presented for handheld devices such as PDAs and cell phones or for printing.</p></li>
+<li><p><b>Global web standards</b> − Now HTML attributes are being deprecated and it is being recommended to use CSS. So its a good idea to start using CSS in all the HTML pages to make them compatible to future browsers.</p></li>
+<li><p><b>Offline Browsing</b> − CSS can store web applications locally with the help of an offline catche.Using of this, we can view offline websites.The cache also ensures faster loading and better overall performance of the website. </p></li>
+<li><p><b>Platform Independence</b> − The Script offer consistent platform independence and can support latest browsers as well. </p></li>
+</ul>
+<h4>Who Creates and Maintains CSS?</h4>
+<p>CSS  was invited by <b>Håkon Wium Lie</b> on October 10, 1994 and maintained through a group of people within the W3C called the CSS Working Group. The CSS Working Group creates documents called <b>specifications</b>. When a specification has been discussed and officially ratified by W3C members, it becomes a recommendation.</p>
+<p>These ratified specifications are called recommendations because the W3C has no control over the actual implementation of the language. Independent companies and organizations create that software.</p>
+<p><b>NOTE</b> − The World Wide Web Consortium, or W3C is a group that makes recommendations about how the Internet works and how it should evolve.</p>
+<h4>CSS Versions</h4>
+<p>Cascading Style Sheets, level 1 (CSS1) was came out of W3C as a recommendation in December 1996. This version describes the CSS language as well as a simple visual formatting model for all the HTML tags.</p>
+<p>CSS2 was became a W3C recommendation in May 1998 and builds on CSS1. This version adds support for media-specific style sheets e.g. printers and aural devices, downloadable fonts, element positioning and tables.</p>
+<p>CSS3 was became a W3C recommendation in June 1999 and builds on older versions CSS. it has divided into documentations is called as Modules and here each module having new extension features defined in CSS2.</p>
+<h5>CSS3 Modules</h5>
+<p>CSS3 Modules are having old CSS specifications as well as extension features.</p>
+<ul class="list">
+<li>Selectors</li>
+<li>Box Model</li>
+<li>Backgrounds and Borders</li>
+<li>Image Values and Replaced Content</li>
+<li>Text Effects</li>
+<li>2D/3D Transformations</li>
+<li>Animations</li>
+<li>Multiple Column Layout</li>
+<li>User Interface</li>
+</ul>
+
+
+
+
+
+
+
+
+
+
+
+
+</strong>
+<div class="sc_line sc_line_style_solid margin_top_3em"></div>
+
+<div class="row">
+<a href="35_data.php"> <button class="sc_button sc_button_square sc_button_style_filled sc_button_bg_link sc_button_size_small alignleft sc_buttons_st1 sc_buttons_st5">Previous</button></a>
+
+<div style="padding-right:50px">
+
+<a href="37_data.php"> <button class="sc_button sc_button_square sc_button_style_filled sc_button_bg_link sc_button_size_small alignright sc_buttons_st1 sc_buttons_st5">NEXT</button></a>
+</div>
+ </div>
  
+ 
+</section>
+</article>
+
+
+
  
 
 </div>
@@ -141,25 +152,8 @@ while($row=MYSQL_fetch_array($res1,MYSQL_ASSOC))
  
 <div class="sidebar widget_area bg_tint_light sidebar_style_light">
  
-<aside class="widget"><a href="que-ans.php">
-<h3 class="widget_title" style="color:green;">Categories</h3></a>
-<ul>
-<?php //include 'conclass.php';
-$obj=new conclass();
-
-		$res=$obj->getdata("select * from category_tbl");
-		$obj1=new conclass();
-
-		while($row=MYSQL_fetch_array($res,MYSQL_ASSOC))
-		{
-			echo '<h5>';
-			echo '<li class="menu-item"><a href="catqa.php?id='.$row["pk_cat_id"].'">'.$row["cat_name"];
-			echo '</a>
-				</li></h5>';
-		}
-		?>
-
-</ul>
+<aside class="widget">
+<?php include 'css_header.php'; ?>
 </aside>
  
   

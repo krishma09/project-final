@@ -13,7 +13,7 @@ session_start();
 <script src="../scripts/bootstrap.js"></script>
 
 <link rel="icon" type="image/x-icon" href="images/favicon.ico"/>
-<title>View Question-Answer | knowledge.com</title>
+<title>HTML Tutorials | knowledge.com</title>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans%3A300italic%2C400italic%2C600italic%2C300%2C400%2C600&amp;subset=latin%2Clatin-ext&amp;ver=4.3.1" type="text/css" media="all"/>
 <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Roboto:100,100italic,300,300italic,400,400italic,700,700italic&amp;subset=latin,latin-ext,cyrillic,cyrillic-ext" type="text/css" media="all"/>
 <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Love+Ya+Like+A+Sister:400&amp;subset=latin" type="text/css" media="all"/>
@@ -53,87 +53,126 @@ session_start();
 <div class="content">
 
 
-<?php
-//	include '../conclass.php';
-  //$obj=new conclass();
- //$res=mysql_query("select * from que_tbl where flag=1");
-	
+<article class="post_item post_item_single page">
+<section class="post_content">
+<?php 
+	$sid=10;
 	$obj=new conclass();
-	$res1=$obj1->getdata('select count(a.pk_ans_id)"cnt",q.* from que_tbl as q,ans_tbl as a where a.fk_q_id=q.pk_q_id group by q.q_title');
-
-	
-while($row=MYSQL_fetch_array($res1,MYSQL_ASSOC))
+	$res=$obj->getdata("select * from subcat_tbl where pk_s_id='$sid'");
+		
+		while($row=MYSQL_fetch_array($res,MYSQL_ASSOC))
 		{
-			$id=$row["pk_q_id"];
-			$title=$row["q_title"];
-//			$desc=$row["q_desc"];
-			$date=$row["q_date"];
-			$ans=$row["cnt"];
-	//		$_SESSION["id"]=$id;
-	//	$_SESSION["id"]=$id;
-			$email1=$row["fk_email_id"];
-			$obj=new conclass();
-			$res2=mysql_query("select * from que_view_tbl where fk_que_id=$id");
-			while($row=MYSQL_fetch_array($res2,MYSQL_ASSOC))
-			{
-				$view=$row["view"];
-			}
-			$obj=new conclass();
-			$res3=mysql_query("select * from user_tbl where pk_email_id='$email1'");
-			while($row=MYSQL_fetch_array($res3,MYSQL_ASSOC))
-			{
-				$photo=$row["u_pic"];
-				$name=$row["u_name"];
-			}
-
-			echo '<article class="post_item post_item_single page">';
-			echo '<section class="post_content">';
-			echo '<div class="tab-inner-warp" style="display: block;">';
-			echo '<div class="tab-inner">';
-			echo '<div class="sc_section" data-animation="animated fadeInUp normal">';
-
-			echo '<article class="question question-type-normal">';
-			echo '<a original-title="ahmed" class="question-author-img tooltip-n"><span></span>';
-			
-			echo '<figure class="sc_image alignleft sc_image_shape_round ">';
-			
-				echo '<img alt="" src="'.$photo.'"> ';
-			//	echo $email;
-	
-			echo '</figure>';
-			echo '<h3>';
-			echo '<a>'.$title.'</a><br>';
-		//	echo '<a href="single_question.html" style="font-size:20px">'.$desc.'</a>';
-			echo '</h3><br>';
-			echo '<div class="question-author"></div>';
-			echo '<div class="question-inner">';
-			echo '<div class="clearfix"></div>';
-	//x		echo '<p class="question-desc" >'.$desc.'</p>';
-			echo '<div class="post_info" style="font-size:20px">';
-			echo '<span class="post_info_item post_info_counters"><span class="glyphicon glyphicon-time"></span>';
-			echo '<a class="post_info_date">'.$date.'</a>';
-			echo '</span>';
-			echo '<span class="post_info_item post_info_counters"><span class="glyphicon glyphicon-comment"></span>	';
-			echo '<a href="ans.php?id='.$id.'" class="post_info_author">'.$ans.' answer</a>';
-			echo '</span>';
-			echo '<span class="post_info_item post_info_counters "><span class="glyphicon glyphicon-user"></span>';
-			echo '<a  >'.$view.' views</a>';
-			echo '</span>';
-			echo '</div>';
-			echo '</article>';
-			echo '</section>';
-			echo '</article>';
-			echo '<br><br>';
-
+			$sname=$row["s_name"];
+			$desc1=$row["s_desc1"];
+			$desc2=$row["s_desc2"];
+			$desc3=$row["s_desc3"];
 		}
 ?>
 
 
 
+<h3 class="widget_title" style="text-align:center"><?php echo $sname;?></h3>
  
- 
+<div class="sc_line sc_line_style_solid margin_top_3em"></div>
+<strong style="font-size:20px;">
 
+
+<div class="w3-example" style="padding-left:50px;">
+<h5>Example :</h5>
+<div class="w3-code notranslate htmlHigh" style="padding-left:100px; font-size:19px;">
+<p style="font-size:20px;color:red;">I am Red</p>
+<p style="font-size:20px;color:blue;">I am Blue</p>
+<p style="font-size:36px;margin:12px 0">I am Big</p>
+</div>
+</div>
+
+
+
+<div class="sc_line sc_line_style_solid margin_top_3em"></div>
+
+
+<h4>The HTML Style Attribute</h4>
+<p>Setting the style of an HTML element, can be done with the <strong>style attribute</strong>.</p>
+<p>The HTML style attribute has the following <strong>syntax</strong>:</p>
+<div class="w3-example">
+<div class="w3-code notranslate">
+ &lt;tagname
+style="<em>property</em>:<em>value;</em>"&gt;
+</div>
+</div><br><br>
+<p>The <em><strong>property</strong></em> is a CSS property. The <em><strong>value</strong></em> is a CSS value.</p>
+<p>You will learn more about CSS later in this tutorial.</p>
+
+
+
+
+
+<div class="sc_line sc_line_style_solid margin_top_3em"></div>
+
+
+<h4>HTML Background Color</h4>
+<p>The <strong>background-color</strong> property defines the background color 
+for an HTML element.</p>
+<p>This example sets the background color for a page to powderblue:</p>
+<div class="w3-example" style="padding-left:50px;">
+<h5>Example :</h5>
+<div class="w3-code notranslate htmlHigh" style="padding-left:100px; font-size:19px;">
+ <span style="color:brown"><span style="color:mediumblue">&lt;</span>body<span style="color:red"> style<span style="color:mediumblue">="background-color:powderblue;"</span></span><span style="color:mediumblue">&gt;</span></span><br><br><span style="color:brown"><span style="color:mediumblue">&lt;</span>h1<span style="color:mediumblue">&gt;</span></span>This is a heading<span style="color:brown"><span style="color:mediumblue">&lt;</span>/h1<span style="color:mediumblue">&gt;</span></span><br><span style="color:brown"><span style="color:mediumblue">&lt;</span>p<span style="color:mediumblue">&gt;</span></span>This is a paragraph.<span style="color:brown"><span style="color:mediumblue">&lt;</span>/p<span style="color:mediumblue">&gt;</span></span><br><br><span style="color:brown"><span style="color:mediumblue">&lt;</span>/body<span style="color:mediumblue">&gt;</span></span></div>
+</div>
+
+<h4>HTML Text Color</h4>
+<p>The <strong>color</strong> property defines the text color for 
+an HTML element:</p>
+<div class="w3-example" style="padding-left:50px;">
+<h5>Example :</h5>
+<div class="w3-code notranslate htmlHigh" style="padding-left:100px; font-size:19px;">
+ <span style="color:brown"><span style="color:mediumblue">&lt;</span>h1<span style="color:red"> style<span style="color:mediumblue">="color:blue;"</span></span><span style="color:mediumblue">&gt;</span></span>This is a heading<span style="color:brown"><span style="color:mediumblue">&lt;</span>/h1<span style="color:mediumblue">&gt;</span></span><br>
+ <span style="color:brown"><span style="color:mediumblue">&lt;</span>p<span style="color:red"> style<span style="color:mediumblue">="color:red;"</span></span><span style="color:mediumblue">&gt;</span></span>This is a paragraph.<span style="color:brown"><span style="color:mediumblue">&lt;</span>/p<span style="color:mediumblue">&gt;</span></span></div>
+</div>
+
+<h4>HTML Fonts</h4>
+<p>The <strong>font-family</strong> property defines the font to be used  
+for an HTML element:</p>
+<div class="w3-example" style="padding-left:50px;">
+<h5>Example :</h5>
+<div class="w3-code notranslate htmlHigh" style="padding-left:100px; font-size:19px;">
+ <span style="color:brown"><span style="color:mediumblue">&lt;</span>h1<span style="color:red"> style<span style="color:mediumblue">="font-family:verdana;"</span></span><span style="color:mediumblue">&gt;</span></span>This is a heading<span style="color:brown"><span style="color:mediumblue">&lt;</span>/h1<span style="color:mediumblue">&gt;</span></span><br><span style="color:brown"><span style="color:mediumblue">&lt;</span>p<span style="color:red"> style<span style="color:mediumblue">="font-family:courier;"</span></span><span style="color:mediumblue">&gt;</span></span>This is a paragraph.<span style="color:brown"><span style="color:mediumblue">&lt;</span>/p<span style="color:mediumblue">&gt;</span></span></div>
+</div>
+
+
+
+
+<div class="sc_line sc_line_style_solid margin_top_3em"></div>
+
+<h4>Chapter Summary</h4>
+<ul>
+  <li>Use the <strong>style</strong> attribute for styling HTML elements</li>
+  <li>Use <strong>background-color</strong> for background color</li>
+  <li>Use <strong>color</strong> for text colors</li>
+  <li>Use <strong>font-family</strong> for text fonts</li>
+  <li>Use <strong>font-size</strong> for text sizes</li>
+  <li>Use <strong>text-align</strong> for text alignment</li>
+</ul>
+
+
+</strong>
+<div class="sc_line sc_line_style_solid margin_top_3em"></div>
+
+<div class="row">
+<a href="9_data.php"> <button class="sc_button sc_button_square sc_button_style_filled sc_button_bg_link sc_button_size_small alignleft sc_buttons_st1 sc_buttons_st5">Previous</button></a>
+
+<div style="padding-right:50px">
+
+<a href="11_data.php"> <button class="sc_button sc_button_square sc_button_style_filled sc_button_bg_link sc_button_size_small alignright sc_buttons_st1 sc_buttons_st5">NEXT</button></a>
+</div>
+ </div>
  
+ 
+</section>
+</article>
+
+
+
  
 
 </div>
@@ -141,25 +180,8 @@ while($row=MYSQL_fetch_array($res1,MYSQL_ASSOC))
  
 <div class="sidebar widget_area bg_tint_light sidebar_style_light">
  
-<aside class="widget"><a href="que-ans.php">
-<h3 class="widget_title" style="color:green;">Categories</h3></a>
-<ul>
-<?php //include 'conclass.php';
-$obj=new conclass();
-
-		$res=$obj->getdata("select * from category_tbl");
-		$obj1=new conclass();
-
-		while($row=MYSQL_fetch_array($res,MYSQL_ASSOC))
-		{
-			echo '<h5>';
-			echo '<li class="menu-item"><a href="catqa.php?id='.$row["pk_cat_id"].'">'.$row["cat_name"];
-			echo '</a>
-				</li></h5>';
-		}
-		?>
-
-</ul>
+<aside class="widget">
+<?php include 'html_header.php'; ?>
 </aside>
  
   

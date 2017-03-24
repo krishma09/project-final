@@ -13,7 +13,7 @@ session_start();
 <script src="../scripts/bootstrap.js"></script>
 
 <link rel="icon" type="image/x-icon" href="images/favicon.ico"/>
-<title>View Question-Answer | knowledge.com</title>
+<title>CSS Tutorials | knowledge.com</title>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans%3A300italic%2C400italic%2C600italic%2C300%2C400%2C600&amp;subset=latin%2Clatin-ext&amp;ver=4.3.1" type="text/css" media="all"/>
 <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Roboto:100,100italic,300,300italic,400,400italic,700,700italic&amp;subset=latin,latin-ext,cyrillic,cyrillic-ext" type="text/css" media="all"/>
 <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Love+Ya+Like+A+Sister:400&amp;subset=latin" type="text/css" media="all"/>
@@ -53,87 +53,132 @@ session_start();
 <div class="content">
 
 
-<?php
-//	include '../conclass.php';
-  //$obj=new conclass();
- //$res=mysql_query("select * from que_tbl where flag=1");
-	
+<article class="post_item post_item_single page">
+<section class="post_content">
+<?php 
+	$sid=39;
 	$obj=new conclass();
-	$res1=$obj1->getdata('select count(a.pk_ans_id)"cnt",q.* from que_tbl as q,ans_tbl as a where a.fk_q_id=q.pk_q_id group by q.q_title');
-
-	
-while($row=MYSQL_fetch_array($res1,MYSQL_ASSOC))
+	$res=$obj->getdata("select * from subcat_tbl where pk_s_id='$sid'");
+		
+		while($row=MYSQL_fetch_array($res,MYSQL_ASSOC))
 		{
-			$id=$row["pk_q_id"];
-			$title=$row["q_title"];
-//			$desc=$row["q_desc"];
-			$date=$row["q_date"];
-			$ans=$row["cnt"];
-	//		$_SESSION["id"]=$id;
-	//	$_SESSION["id"]=$id;
-			$email1=$row["fk_email_id"];
-			$obj=new conclass();
-			$res2=mysql_query("select * from que_view_tbl where fk_que_id=$id");
-			while($row=MYSQL_fetch_array($res2,MYSQL_ASSOC))
-			{
-				$view=$row["view"];
-			}
-			$obj=new conclass();
-			$res3=mysql_query("select * from user_tbl where pk_email_id='$email1'");
-			while($row=MYSQL_fetch_array($res3,MYSQL_ASSOC))
-			{
-				$photo=$row["u_pic"];
-				$name=$row["u_name"];
-			}
-
-			echo '<article class="post_item post_item_single page">';
-			echo '<section class="post_content">';
-			echo '<div class="tab-inner-warp" style="display: block;">';
-			echo '<div class="tab-inner">';
-			echo '<div class="sc_section" data-animation="animated fadeInUp normal">';
-
-			echo '<article class="question question-type-normal">';
-			echo '<a original-title="ahmed" class="question-author-img tooltip-n"><span></span>';
-			
-			echo '<figure class="sc_image alignleft sc_image_shape_round ">';
-			
-				echo '<img alt="" src="'.$photo.'"> ';
-			//	echo $email;
-	
-			echo '</figure>';
-			echo '<h3>';
-			echo '<a>'.$title.'</a><br>';
-		//	echo '<a href="single_question.html" style="font-size:20px">'.$desc.'</a>';
-			echo '</h3><br>';
-			echo '<div class="question-author"></div>';
-			echo '<div class="question-inner">';
-			echo '<div class="clearfix"></div>';
-	//x		echo '<p class="question-desc" >'.$desc.'</p>';
-			echo '<div class="post_info" style="font-size:20px">';
-			echo '<span class="post_info_item post_info_counters"><span class="glyphicon glyphicon-time"></span>';
-			echo '<a class="post_info_date">'.$date.'</a>';
-			echo '</span>';
-			echo '<span class="post_info_item post_info_counters"><span class="glyphicon glyphicon-comment"></span>	';
-			echo '<a href="ans.php?id='.$id.'" class="post_info_author">'.$ans.' answer</a>';
-			echo '</span>';
-			echo '<span class="post_info_item post_info_counters "><span class="glyphicon glyphicon-user"></span>';
-			echo '<a  >'.$view.' views</a>';
-			echo '</span>';
-			echo '</div>';
-			echo '</article>';
-			echo '</section>';
-			echo '</article>';
-			echo '<br><br>';
-
+			$sname=$row["s_name"];
+			$desc1=$row["s_desc1"];
+			$desc2=$row["s_desc2"];
+			$desc3=$row["s_desc3"];
 		}
 ?>
 
 
 
+<h3 class="widget_title" style="text-align:center"><?php echo $sname;?></h3>
  
- 
+<div class="sc_line sc_line_style_solid margin_top_3em"></div>
+<strong style="font-size:20px;">
 
+
+
+
+<p>Before we start actual exercise, we would like to give a brief idea about the CSS Measurement Units.</p>
+<p>CSS supports a number of measurements including absolute units such as inches, centimeters, points, and so on, as well as relative measures such as percentages and em units. You need these values while specifying various measurements in your Style rules e.g <b>border = "1px solid red"</b>.</p>
+<p>We have listed out all the CSS Measurement Units along with proper Examples −</p>
+<table class="table table-bordered">
+<tbody><tr>
+<th style="width:20px;">Unit</th>
+<th style="width:15px;">Description</th>
+<th style="width:60px;">Example</th>
+</tr>
+<tr>
+<td>%</td>
+<td>Defines a measurement as a percentage relative to another value, typically an enclosing element.</td>	
+<td>p {font-size: 16pt; line-height: 125%;}</td>	
+</tr>	 
+<tr>
+<td>cm</td>
+<td>Defines a measurement in centimeters.</td>		
+<td>div {margin-bottom: 2cm;}</td>	
+</tr>	
+<tr>
+<td>em</td>
+<td>A relative measurement for the height of a font in em spaces. Because an em unit is equivalent to the size of a given font, if you assign a font to 12pt, each "em" unit would be 12pt; thus, 2em would be 24pt.</td>
+<td>p {letter-spacing: 7em;}</td>		
+</tr>	 
+<tr>
+<td>ex</td>
+<td>This value defines a measurement relative to a font's x-height. The x-height is determined by the height of the font's lowercase letter x.</td>		
+<td>p {font-size: 24pt; line-height: 3ex;}</td>	
+</tr>		
+<tr>
+<td>in</td>
+<td>Defines a measurement in inches.</td>		
+<td>p {word-spacing: .15in;}</td>	
+</tr>	 
+<tr>
+<td>mm</td>
+<td>Defines a measurement in millimeters.</td>		
+<td>p {word-spacing: 15mm;}</td>	
+</tr>		
+<tr>
+<td>pc</td>
+<td>Defines a measurement in picas. A pica is equivalent to 12 points; thus, there are 6 picas per inch.</td>		
+<td>p {font-size: 20pc;}</td>	
+</tr>	 
+<tr>
+<td>pt</td>
+<td>Defines a measurement in points. A point is defined as 1/72nd of an inch.</td>		
+<td>body {font-size: 18pt;}</td>	
+</tr>	
+<tr>
+<td>px</td>
+<td>Defines a measurement in screen pixels.</td>		
+<td>p {padding: 25px;}</td>	
+</tr>	 
+<tr><td>vh</td>
+<td>1% of viewport height.</td>		
+<td>h4 {
+  font-size: 3.0vh;
+}</td>	
+</tr>
+<tr>
+<td>vw</td>
+<td>1% of viewport width</td>
+<td>h1 {
+  font-size: 5.9vw;
+}</td>
+</tr>
+<tr>
+<td>vmin</td>
+<td>1vw or 1vh, whichever is smaller</td>
+<td>p { font-size: 2vmin;}</td>
+</tr>
+</tbody></table>
+
+
+
+
+
+
+
+
+
+</strong>
+<div class="sc_line sc_line_style_solid margin_top_3em"></div>
+
+<div class="row">
+<a href="38_data.php"> <button class="sc_button sc_button_square sc_button_style_filled sc_button_bg_link sc_button_size_small alignleft sc_buttons_st1 sc_buttons_st5">Previous</button></a>
+
+<div style="padding-right:50px">
+
+<a href="40_data.php"> <button class="sc_button sc_button_square sc_button_style_filled sc_button_bg_link sc_button_size_small alignright sc_buttons_st1 sc_buttons_st5">NEXT</button></a>
+</div>
+ </div>
  
+ 
+</section>
+</article>
+
+
+
  
 
 </div>
@@ -141,25 +186,8 @@ while($row=MYSQL_fetch_array($res1,MYSQL_ASSOC))
  
 <div class="sidebar widget_area bg_tint_light sidebar_style_light">
  
-<aside class="widget"><a href="que-ans.php">
-<h3 class="widget_title" style="color:green;">Categories</h3></a>
-<ul>
-<?php //include 'conclass.php';
-$obj=new conclass();
-
-		$res=$obj->getdata("select * from category_tbl");
-		$obj1=new conclass();
-
-		while($row=MYSQL_fetch_array($res,MYSQL_ASSOC))
-		{
-			echo '<h5>';
-			echo '<li class="menu-item"><a href="catqa.php?id='.$row["pk_cat_id"].'">'.$row["cat_name"];
-			echo '</a>
-				</li></h5>';
-		}
-		?>
-
-</ul>
+<aside class="widget">
+<?php include 'css_header.php'; ?>
 </aside>
  
   
