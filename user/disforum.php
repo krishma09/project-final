@@ -37,6 +37,22 @@ session_start();
 <link rel="stylesheet" href="css/custom-style.css" type="text/css" media="all"/>
 <link rel="stylesheet" href="css/responsive.css" type="text/css" media="all"/>
 <link rel="stylesheet" href="css/skins/skin-responsive.css" type="text/css" media="all"/>
+
+<link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+<script src="//code.jquery.com/jquery-1.10.2.js"></script>
+<script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+
+<script>
+$(document).ready(function(){
+
+$('#demo1').autocomplete({
+source:'x2.php'
+});
+});
+</script>
+
+
+
 </head>
 <body class="page body_style_wide body_filled article_style_boxed template_single-standard top_panel_style_dark top_panel_opacity_solid top_panel_above menu_right sidebar_show sidebar_right">
 <a id="toc_top" class="sc_anchor" title="To Top" data-description="&lt;i&gt;Back to top&lt;/i&gt; - &lt;br&gt;scroll to top of the page" data-icon="icon-angle-double-up" data-url="" data-separator="yes"></a>
@@ -48,19 +64,17 @@ session_start();
 <?php include 'userheader.php'; ?> 
 
 <div class="page_content_wrap">
-<div class="content_wrap">
- 
-<div class="content">
 
 
-
+<div class="row">
+<div class="col-md-2">
 
 
 
 			<!-- Button trigger modal -->
-<button type="button" class="sc_button sc_button_square sc_button_style_filled sc_button_bg_link sc_button_size_midum alignleft sc_buttons_st1 sc_buttons_st5" data-toggle="modal" data-target="#myModal">
+<button type="button" class="sc_button sc_button_square sc_button_style_filled sc_button_bg_link sc_button_size_medium alignleft sc_buttons_st1 sc_buttons_st5" data-toggle="modal" data-target="#myModal">
   Start New Discussion
-</button>
+</button><br><br>
 
 <!-- Modal -->
 <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
@@ -114,13 +128,36 @@ session_start();
   </div>
 </div>
 <br><br><br>
+</div>
+
+<div class="col-md-6">
+<form action="searchresultofdisforum.php" method="post">
+
+  <div class="col-lg-10" style="padding-left:10px; border:blue;">
+    <div class="input-group">
+      <span class="input-group-btn">
+ <br>       <h4 type="button" style=" color:green; "> Title:</button>
+      </span>
+	  
+      <input class="form-control " style="backgound-color:white" type="text" name="demo1" id="demo1">
+    </div><!-- /input-group -->
+  </div><!-- /.col-lg-6 -->
+
+<br>
+<button type="submit" name="submit" class="search_submit icon-zoom-1" title="Start search"></button>
+
+</form>
+</div>
+</div>
 
 
 
 
 
 
-
+<div class="content_wrap">
+ 
+<div class="content">
 
 
 
@@ -161,7 +198,7 @@ session_start();
 			
 			echo '<figure class="sc_image alignleft sc_image_shape_round ">';
 			
-				echo '<img alt="" src="'.$photo.'"> ';
+				echo '<img alt="" height="50px" width="70px" src="'.$photo.'"> ';
 				echo '</figure>';
 			echo '<h5>';
 			echo '<a class="question_title alignleft ">'.$name.'</a><br></h5>';

@@ -74,7 +74,7 @@ $res=$obj->getdata("select * from user_tbl where pk_email_id='$email'");
 <span class="user_name"><?php echo $uname;?></span></a>
 <ul>
 <li><a href="#" class="icon icon-doc-inv">view profile</a></li>
-<li><a href="#" class="icon icon-cog-1">edit profile</a></li>
+<li><a href="editprofil.php" class="icon icon-cog-1">edit profile</a></li>
 <li><a href="#" class="icon icon-cog-1">change profile</a></li>
 </ul>
 </li>
@@ -94,7 +94,7 @@ $res=$obj->getdata("select * from user_tbl where pk_email_id='$email'");
 <div class="logo">
 <a href="index-2.php">
 <h2 class="logo_main" alt="">knowledge.com</h2>
-<img src="images/logo_dark.png" class="logo_fixed" alt="">
+<h3 class="logo_fixed" alt="">knowledge.com</h3>
 </a>
 </div>
  
@@ -123,10 +123,10 @@ $res=$obj->getdata("select * from user_tbl where pk_email_id='$email'");
 <ul class="sub-menu">
 <li class="menu-item"><a href="2_data.php">HTML</a></li>
 <li class="menu-item"><a href="35_data.php">CSS</a></li>
-<li class="menu-item"><a href="">JAVASCRIPT</a></li>
-<li class="menu-item"><a href="">PL/SQL</a></li>
-<li class="menu-item"><a href="">PHP</a></li>
-<li class="menu-item"><a href="">BOOTSTRAP</a></li>
+<li class="menu-item"><a href="55_data.php">JAVASCRIPT</a></li>
+<li class="menu-item"><a href="83_data.php">PL/SQL</a></li>
+<li class="menu-item"><a href="106_data.php">PHP</a></li>
+<li class="menu-item"><a href="136_data.php">BOOTSTRAP</a></li>
 <li class="menu-item"><a href="">JQUERY</a></li>
 <li class="menu-item"><a href="">ANGULAR</a></li>
 <li class="menu-item"><a href="">C</a></li>

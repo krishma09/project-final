@@ -69,7 +69,9 @@ $qid=$_REQUEST["id"];
 $obj=new conclass();
 
 		$res1=$obj->getdata("select * from que_view_tbl where fk_que_id='$qid'");
-
+		$no=mysql_num_rows($res1);
+		if($no>0)
+		{
 		while($row=MYSQL_fetch_array($res1,MYSQL_ASSOC))
 		{
 				$cnt=$row["view"];
@@ -77,6 +79,13 @@ $obj=new conclass();
 		$cnt1=$cnt+1;
 		$obj1=new conclass();
 		$res=$obj1->getdata("update que_view_tbl set view='$cnt1' where fk_que_id='$qid'");
+		}
+		else{
+			$view=1;
+		$obj1=new conclass();
+		$res=$obj1->getdata("insert into que_view_tbl values('$qid','$view')");
+			
+		}
 ?>
 
 <?php 
@@ -88,7 +97,7 @@ $obj=new conclass();
 		while($row=MYSQL_fetch_array($res1,MYSQL_ASSOC))
 		{
 			$title=$row["q_title"];
-			$desc=$row["q_desc"];
+	//		$desc=$row["q_desc"];
 	
 		}
 ?>
@@ -98,7 +107,7 @@ $obj=new conclass();
 			<div class="tab-inner">
 			<div class="sc_section" data-animation="animated fadeInUp normal">
 			<center>	<h3><?php echo $title; ?>
-				</h3><h6><?php echo $desc; ?></h6></center>
+				</h3></center>
 			</div>
 			</div>
 			</div>
@@ -122,7 +131,7 @@ $obj=new conclass();
 			$exm=$row["ans_ex"];
 			$e_id=$row["fk_email_id"];
 			$date=$row["ans_date"];
-			$img=$row["ans_img"];
+			//$img=$row["ans_img"];
 			
 			$obj=new conclass();
 			$res3=mysql_query("select * from user_tbl where pk_email_id='$e_id'");
@@ -134,11 +143,18 @@ $obj=new conclass();
 			
 			$obj=new conclass();
 			$res2=mysql_query("select * from ans_like_tbl where fk_ans_id='$id'");
+			$no1=mysql_num_rows($res2);
+		if($no1>0)
+		{
+		
 			while($row=MYSQL_fetch_array($res2,MYSQL_ASSOC))
 			{
 				$like=$row["ans_like"];
 			}
-			
+		}
+		else{
+			$like=0;
+		}
 			echo '<article class="post_item post_item_single page">';
 			echo '<section class="post_content">';
 			echo '<div class="tab-inner-warp" style="display: block;">';
@@ -150,7 +166,7 @@ $obj=new conclass();
 			
 			echo '<figure class="sc_image alignleft sc_image_shape_round ">';
 			
-				echo '<img alt="" src="'.$photo.'"> ';
+				echo '<img alt="" height="50px" width="70px" src="'.$photo.'"> ';
 			//	echo $email;
 	
 			echo '</figure>';
@@ -178,8 +194,53 @@ $obj=new conclass();
 		}
 
 ?>
+<!-- Button trigger modal -->
+<button type="button" class="sc_button sc_button_square sc_button_style_filled sc_button_bg_link sc_button_size_large aligncenter sc_buttons_st1 sc_buttons_st5" data-toggle="modal" style="down-padding:150px;" data-target="#myModal">
+  Add Answer
+</button>
 
-
+<!-- Modal -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+	<form method="post" action="">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">Add Answer</h4>
+      </div>
+      <div class="modal-body">
+			
+			Description of Answer:	<textarea rows="5" cols="50" name="descoftopic"></textarea><br><br>
+			
+	  
+	  <br><br>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <input type="submit" name="submit" value="Add" class="btn btn-primary">
+		<?php 
+			if(isset($_POST["submit"]))
+			{
+				
+				$descoftopic=$_POST["descoftopic"];
+				$flag=0;
+				$date=date("d/m/y");
+				$email=$_SESSION["email"];
+				$obj=new conclass();
+			$res2=mysql_query("insert into ans_tbl values(NULL,'$descoftopic','$email','$qid','$date',NULL,'$flag')");
+			if($res2==1)
+			{
+				header("location:ans.php?id=$qid");
+			}
+			}
+		
+		?>
+      </div>
+    </div>
+	</form>
+  </div>
+</div>
+<br><br><br>
 
 </div>
 </div>

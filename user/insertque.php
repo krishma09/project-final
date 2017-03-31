@@ -2,26 +2,22 @@
 	session_start();
 	$email=$_SESSION["email"];
 	$title=$_POST["title"];
-	$desc=$_POST["desc"];
+//	$desc=$_POST["desc"];
 	$cat=$_POST["sub"];
-	$date=date("d-m-y");
+	$date=date("d/m/y");
 //	$cnt=1;
 //	$like=1;
-	$flag=0;
-	$str="../img/".$_FILES["photo"]["name"];
+	//$flag=0;
+	//$str="../img/".$_FILES["photo"]["name"];
 	 
-	$ext=pathinfo($str,PATHINFO_EXTENSION);
-	if($ext=="jpg" || $ext=="png" || $ext=="jpeg")
-	{
-		move_uploaded_file($_FILES["photo"]["tmp_name"],$str);
-	echo $email;
-	echo $title,$desc,$date,$flag,$str;
-	
-	echo $cat; 
+//	$ext=pathinfo($str,PATHINFO_EXTENSION);
+//	if($ext=="jpg" || $ext=="png" || $ext=="jpeg")
+//	{
+//		move_uploaded_file($_FILES["photo"]["tmp_name"],$str);
 	include '../conclass.php';
 	$obj= new conclass;
 $id="NULL";
-$res1=$obj->getdata("insert into que_tbl values('$id','$title','$desc','$str','$date','$email','$cat','$flag')");
+$res1=$obj->getdata("insert into que_tbl values('$id','$title','$date','$email','$cat','$flag')");
 	
 if($res1==1)
 {
@@ -32,5 +28,5 @@ else
 {
 	echo "nathii thayuu";
 }
-	}	
+	//}	
 ?>

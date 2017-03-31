@@ -50,7 +50,7 @@ $res=$obj->getdata("select * from user_tbl where pk_email_id='$email'");
 <div class="logo">
 <a href="index-2.php">
 <h3 class="logo_main" alt="">knowledge.com</h3>
-<img src="images/logo_dark.png" class="logo_fixed" alt="">
+<h3 class="logo_fixed" alt="">knowledge.com</h3>
 </a>
 
 </div>

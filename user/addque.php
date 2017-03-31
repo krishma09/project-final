@@ -63,33 +63,10 @@ session_start();
       <span class="input-group-btn">
         <h4 type="button" style=" color:green; "> Title:</button>
       </span>
-      <input type="text" class="form-control" name="title" >
+      <textarea rows="1" cols="35" class="form-control" name="title" ></textarea>
     </div><!-- /input-group -->
   </div><!-- /.col-lg-6 -->
   <br>
-</div>
-<div class="row" >
-   <div class="col-lg-10" style="padding-left:100px;">
-    <div class="input-group">
-      <span class="input-group-btn">
-        <h4 class="btn btn-default" type="button" style=" color:green; ">Description:</button>
-      </span>
-      <input type="text" class="form-control" name="desc" >
-    </div><!-- /input-group -->
-  </div><!-- /.col-lg-6 -->
-  <br>
-</div>
-
-<div class="row">
-   <div class="col-lg-10" style="padding-left:100px;">
-    <div class="input-group">
-      <span class="input-group-btn">
-        <h4 class="btn btn-default" type="button" style=" color:green; "> Image:</button>
-      </span>
-      <input type="file" class="form-control"   name="photo">
-    </div><!-- /input-group -->
-  </div><!-- /.col-lg-6 -->
-  <br><br>
 </div>
 
 <div class="row">

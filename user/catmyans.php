@@ -1,5 +1,6 @@
 <?php 
 session_start();
+$page = isset($_GET['page']) ? $_GET['page'] : 1;
 ?>
 <!DOCTYPE html>
 <html lang="en-US">
@@ -37,6 +38,22 @@ session_start();
 <link rel="stylesheet" href="css/custom-style.css" type="text/css" media="all"/>
 <link rel="stylesheet" href="css/responsive.css" type="text/css" media="all"/>
 <link rel="stylesheet" href="css/skins/skin-responsive.css" type="text/css" media="all"/>
+
+<link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+<script src="//code.jquery.com/jquery-1.10.2.js"></script>
+<script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+
+<script>
+$(document).ready(function(){
+
+$('#demo1').autocomplete({
+source:'x1.php'
+});
+});
+</script>
+
+
+
 </head>
 <body class="page body_style_wide body_filled article_style_boxed template_single-standard top_panel_style_dark top_panel_opacity_solid top_panel_above menu_right sidebar_show sidebar_right">
 <a id="toc_top" class="sc_anchor" title="To Top" data-description="&lt;i&gt;Back to top&lt;/i&gt; - &lt;br&gt;scroll to top of the page" data-icon="icon-angle-double-up" data-url="" data-separator="yes"></a>
@@ -46,48 +63,118 @@ session_start();
 <div class="top_panel_fixed_wrap"></div>
  
 <?php include 'userheader.php'; ?>  
- 
+
 <div class="page_content_wrap">
+<div class="row">
+<div class="col-md-2">
+
+<a href="addque.php"><button type="button" class="sc_button sc_button_square sc_button_style_filled sc_button_bg_link sc_button_size_medium  sc_buttons_st1 sc_buttons_st5" data-toggle="modal" data-target="#myModal">
+  Ask Question
+</button></a><br><br>
+</div>
+
+
+
+
+
+
+<div class="col-md-6">
+<form action="searchresult.php" method="post">
+
+  <div class="col-lg-10" style="padding-left:10px; border:blue;">
+    <div class="input-group">
+      <span class="input-group-btn">
+ <br>       <h4 type="button" style=" color:green; "> Title:</button>
+      </span>
+	  
+      <input class="form-control " style="backgound-color:white" type="text" name="demo1" id="demo1">
+    </div><!-- /input-group -->
+  </div><!-- /.col-lg-6 -->
+
+<br>
+<button type="submit" name="submit" class="search_submit icon-zoom-1" title="Start search"></button>
+
+</form>
+</div>
+</div>
+
 <div class="content_wrap">
  
 <div class="content">
 
 
-<?php
 
+<?php
 //	include '../conclass.php';
-//  $obj=new conclass();
- //$res=$obj->getdata("select * from que_tbl where fk_cat_id=$cid and flag=1");
+  //$obj=new conclass();
+ //$res=mysql_query("select * from que_tbl where flag=1");
+		
 $cid=$_REQUEST["id"];
-$obj1=new conclass();
-$res1=$obj1->getdata("select count(a.pk_ans_id)'cnt',q.* from que_tbl as q ,ans_tbl as a where a.fk_q_id=q.pk_q_id and q.fk_cat_id=$cid and a.fk_email_id='$email' group by q.q_title");
-	
-	
+		if(!isset($_POST["btn"]))
+			{
+
+$noi=5;
+
+ if($page=="" || $page=="1")
+{
+	$page1=0;
+}
+else
+{
+	$page1=($page*$noi)-$noi;
+}
+
+$next_page=$page+1;
+$prev_page=$page-1;
+$first_page=1;
+$flag=1;	
+	$obj=new conclass();
+	$res1=$obj1->getdata("select * from que_tbl as q , ans_tbl as a where q.fk_cat_id='$cid' and a.fk_q_id=q.pk_q_id and a.fk_email_id='$email'  LIMIT {$page1}, {$noi}");
+
 	
 while($row=MYSQL_fetch_array($res1,MYSQL_ASSOC))
 		{
-//$obj=new conclass();
-	
-		$id=$row["pk_q_id"];
+			$id=$row["pk_q_id"];
 			$title=$row["q_title"];
-			$desc=$row["q_desc"];
+//			$desc=$row["q_desc"];
 			$date=$row["q_date"];
-			$ans=$row["cnt"];
+	//		$_SESSION["id"]=$id;
+	//	$_SESSION["id"]=$id;
 			$email1=$row["fk_email_id"];
 			$obj=new conclass();
-			$res2=mysql_query("select * from que_view_tbl where fk_que_id=$id");
+			$res2=mysql_query("select * from que_view_tbl where fk_que_id='$id'");
+			$cnt=mysql_num_rows($res2);
+			if($cnt>0)
+			{
+			//$row=MYSQL_fetch_array($res2,MYSQL_ASSOC);
 			while($row=MYSQL_fetch_array($res2,MYSQL_ASSOC))
 			{
 				$view=$row["view"];
 			}
-
+			}
+			else
+			{
+				$view=0;
+			}
+			$obj=new conclass();
+			$res=mysql_query("select *,count(pk_ans_id)'cnt' from ans_tbl where fk_q_id='$id'");
+			
+			while($row=MYSQL_fetch_array($res,MYSQL_ASSOC))
+			{
+				$ans=$row["cnt"];
+				$ans_desc=$row["ans_desc"];
+				$half_ans=substr($ans_desc,0,220);
+			}
+			
 			$obj=new conclass();
 			$res3=mysql_query("select * from user_tbl where pk_email_id='$email1'");
 			while($row=MYSQL_fetch_array($res3,MYSQL_ASSOC))
 			{
+				
 				$photo=$row["u_pic"];
 				$name=$row["u_name"];
-			}			
+			}
+
 			echo '<article class="post_item post_item_single page">';
 			echo '<section class="post_content">';
 			echo '<div class="tab-inner-warp" style="display: block;">';
@@ -99,24 +186,29 @@ while($row=MYSQL_fetch_array($res1,MYSQL_ASSOC))
 			
 			echo '<figure class="sc_image alignleft sc_image_shape_round ">';
 			
-				echo '<img alt="" src="'.$photo.'"> ';
+				echo '<img alt="" height="100px" width="130px" src="'.$photo.'"> ';
 			//	echo $email;
 	
 			echo '</figure>';
-			echo '<h3>';
-			echo '<a href="single_question.html">'.$title.'</a><br>';
-		//	echo '<a href="single_question.html" style="font-size:20px">'.$desc.'</a>';
-			echo '</h3><br>';
+			echo '<strong><h4>';
+			echo '<a>'.$title.'</a><br></h4>';
+			echo '<h6>';
+			echo $half_ans;
+			if($ans>0)
+			{
+				echo '.....<a class="post_info_date" href="ans.php?id='.$id.'" style="font-size:20px">More</a>';
+			}
+			echo '</h6></strong><br>';
 			echo '<div class="question-author"></div>';
 			echo '<div class="question-inner">';
 			echo '<div class="clearfix"></div>';
-			echo '<p class="question-desc" >'.$desc.'</p>';
+	//x		echo '<p class="question-desc" >'.$desc.'</p>';
 			echo '<div class="post_info" style="font-size:20px">';
 			echo '<span class="post_info_item post_info_counters"><span class="glyphicon glyphicon-time"></span>';
 			echo '<a class="post_info_date">'.$date.'</a>';
 			echo '</span>';
 			echo '<span class="post_info_item post_info_counters"><span class="glyphicon glyphicon-comment"></span>	';
-			echo '<a href="ans.php?id='.$row["pk_q_id"].'" class="post_info_author">'.$ans.' answer</a>';
+			echo '<a href="ans.php?id='.$id.'" class="post_info_author">'.$ans.' answer</a>';
 			echo '</span>';
 			echo '<span class="post_info_item post_info_counters "><span class="glyphicon glyphicon-user"></span>';
 			echo '<a  >'.$view.' views</a>';
@@ -128,9 +220,67 @@ while($row=MYSQL_fetch_array($res1,MYSQL_ASSOC))
 			echo '<br><br>';
 
 		}
+		$res1=$obj->getdata("select * from que_tbl as q , ans_tbl as a where q.fk_cat_id='$cid' and a.fk_q_id=q.pk_q_id and a.fk_email_id='$email'");
+		$cnt=mysql_num_rows($res1);	
+		//echo $cnt.'<br>';
+		
+		$a=$cnt/$noi;
+		
+		$a=ceil($a);
+		$last_page=$a;
+			}
 ?>
 
 
+<?php
+			if(!isset($_POST["btn"]))
+			{
+			echo '<br><center>';
+			if($page==1)
+			{
+				
+			}
+			else 
+			{	
+			echo '<a href="catmyans.php?page='.$first_page.'&id='.$cid.'" style="text-decoration:none;"><button class="button"><<</button></a>';	
+			}
+			if($prev_page==0)
+			{
+				
+			}
+			else
+			{
+		echo '<a href="catmyans.php?page='.$prev_page.'&id='.$cid.'" style="text-decoration:none;"><button class="button">Previous</button></a>';	
+			}
+			
+			for($b=1;$b<=$a;$b++)
+		{
+			echo '<a href="catmyans.php?page='.$b.'&id='.$cid.'" style="text-decoration:none;"><button class="button">'.$b.'</button></a>'; 
+		}
+		
+		if($next_page==$a)
+		{
+			echo '<a href="catmyans.php?page='.$next_page.'&id='.$cid.'" style="text-decoration:none;"><button class="button">Next</button></a>';	
+		}
+		else
+		{	
+		
+		}
+		if($page==$last_page)
+		{
+			
+		}
+		else if($a==0)
+		{
+			
+		}
+		else 
+		{	
+		echo '<a href="catmyans.php?page='.$last_page.'&id='.$cid.'" style="text-decoration:none;"><button class="button">>></button></a>';
+		}
+		echo '</center>';
+			}
+		?>
 
  
  
