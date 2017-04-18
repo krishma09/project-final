@@ -13,7 +13,7 @@ session_start();
 <script src="../scripts/bootstrap.js"></script>
 
 <link rel="icon" type="image/x-icon" href="images/favicon.ico"/>
-<title>Discussion Forum | knowledge.com</title>
+<title>Edit Profile | knowledge.com</title>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans%3A300italic%2C400italic%2C600italic%2C300%2C400%2C600&amp;subset=latin%2Clatin-ext&amp;ver=4.3.1" type="text/css" media="all"/>
 <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Roboto:100,100italic,300,300italic,400,400italic,700,700italic&amp;subset=latin,latin-ext,cyrillic,cyrillic-ext" type="text/css" media="all"/>
 <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Love+Ya+Like+A+Sister:400&amp;subset=latin" type="text/css" media="all"/>

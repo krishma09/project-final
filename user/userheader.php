@@ -29,9 +29,9 @@ $res=$obj->getdata("select * from user_tbl where pk_email_id='$email'");
 
 <span class="user_name"><?php echo $uname;?></span></a>
 <ul>
-<li><a href="#" class="icon icon-doc-inv">view profile</a></li>
-<li><a href="#" class="icon icon-cog-1">edit profile</a></li>
-<li><a href="#" class="icon icon-cog-1">change profile</a></li>
+<li><a href="viewprofile.php" class="icon icon-doc-inv">view profile</a></li>
+<li><a href="editprofil.php" class="icon icon-cog-1">edit profile</a></li>
+<li><a href="changepwd.php" class="icon icon-cog-1">change password</a></li>
 </ul>
 </li>
 <li class="menu_user_logout">
@@ -118,6 +118,9 @@ $obj=new conclass();
 ?>
 
 </ul>
+
+</li>
+<li class="menu-item menu-item-has-children"><a href="feedback.php">Feedback</a>
 
 </li>
 

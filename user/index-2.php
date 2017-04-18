@@ -73,9 +73,9 @@ $res=$obj->getdata("select * from user_tbl where pk_email_id='$email'");
 
 <span class="user_name"><?php echo $uname;?></span></a>
 <ul>
-<li><a href="#" class="icon icon-doc-inv">view profile</a></li>
+<li><a href="viewprofile.php" class="icon icon-doc-inv">view profile</a></li>
 <li><a href="editprofil.php" class="icon icon-cog-1">edit profile</a></li>
-<li><a href="#" class="icon icon-cog-1">change profile</a></li>
+<li><a href="changepwd.php" class="icon icon-cog-1">change password</a></li>
 </ul>
 </li>
 <li class="menu_user_logout">
@@ -127,11 +127,10 @@ $res=$obj->getdata("select * from user_tbl where pk_email_id='$email'");
 <li class="menu-item"><a href="83_data.php">PL/SQL</a></li>
 <li class="menu-item"><a href="106_data.php">PHP</a></li>
 <li class="menu-item"><a href="136_data.php">BOOTSTRAP</a></li>
-<li class="menu-item"><a href="">JQUERY</a></li>
-<li class="menu-item"><a href="">ANGULAR</a></li>
+<li class="menu-item"><a href="165_data.php">JQUERY</a></li>
+<li class="menu-item"><a href="176_data.php">ANGULARJS</a></li>
 <li class="menu-item"><a href="">C</a></li>
 <li class="menu-item"><a href="">C++</a></li>
-<li class="menu-item"><a href="">DS</a></li>
 <li class="menu-item"><a href="">NODE.JS</a></li>
 <li class="menu-item"><a href="">VB.NET</a></li>
 <li class="menu-item"><a href="">ASP.NET</a></li>
@@ -183,6 +182,9 @@ $obj=new conclass();
 
 </li>
 
+<li class="menu-item menu-item-has-children"><a href="feedback.php">Feedback</a>
+
+</li>
 </ul>
 </nav>
  

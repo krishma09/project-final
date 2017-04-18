@@ -127,7 +127,8 @@ $prev_page=$page-1;
 $first_page=1;
 $flag=1;	
 	$obj=new conclass();
-	$res1=$obj1->getdata("select * from que_tbl as q , ans_tbl as a where a.fk_q_id=q.pk_q_id and a.fk_email_id='$email'  LIMIT {$page1}, {$noi}");
+	$res1=$obj1->getdata("select q.pk_q_id,q.q_title,q.q_date,q.
+fk_email_id,a.ans_desc from que_tbl as q , ans_tbl as a where a.fk_q_id=q.pk_q_id and a.fk_email_id='$email'  LIMIT {$page1}, {$noi}");
 
 	
 while($row=MYSQL_fetch_array($res1,MYSQL_ASSOC))
